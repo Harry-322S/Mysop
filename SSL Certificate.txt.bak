@@ -1,0 +1,7 @@
+SSLCertificateFile /etc/httpd/conf.d/Cert_Nov_2023/ServerCertificate.crt
+
+SSLCertificateKeyFile /etc/httpd/conf.d/Cert_Nov_2023/2022_actcorp_in.key
+
+SSLCertificateChainFile /etc/httpd/conf.d/Cert_Nov_2023/ChainBundle2.crt
+
+

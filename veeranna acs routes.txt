@@ -1,0 +1,212 @@
+ip route add 10.198.0.0/16 via 123.176.40.40
+ip route add 10.123.0.0/16 via 123.176.40.110
+ip route add 10.115.0.0/18 via 123.176.40.223
+ip route add 10.100.100.0/24 via 10.100.109.2
+
+ip route add 10.100.113.145/32 via 10.100.109.2
+ip route add 172.17.17.0/24 via 123.176.40.40
+ip route add 10.119.0.0/18 via 123.176.40.131
+ip route add 10.119.0.0/16 via 123.176.40.131
+
+ip route add 10.119.128.0/17 via 123.176.40.223
+ip route add 10.115.64.0/18 via 123.176.40.131
+ip route add 10.115.192.0/18 via 123.176.40.131
+ip route add 10.111.0.0/16 via 123.176.40.223
+
+ip route add 10.111.128.0/17 via 123.176.40.223
+ip route add 10.112.0.0/16 via 123.176.40.131
+ip route add 10.112.64.0/18 via 123.176.40.131
+ip route add 10.112.192.0/18 via 123.176.40.131
+
+ip route add 10.113.128.0/18 via 123.176.40.223
+ip route add 10.113.192.0/18 via 123.176.40.223
+ip route add 10.114.0.0/16 via 123.176.40.131
+ip route add 10.116.0.0/16 via 123.176.40.109
+
+ip route add 10.117.0.0/16 via 123.176.40.109
+ip route add 10.121.0.0/17 via 123.176.40.131
+ip route add 10.121.128.0/17 via 123.176.40.131
+ip route add 10.123.0.0/16 via 123.176.40.110
+
+ip route add 10.124.0.0/16 via 123.176.40.223
+ip route add 10.125.0.0/16 via 123.176.40.223
+ip route add 10.126.64.0/18 via 123.176.40.223
+ip route add 10.126.128.0/18 via 123.176.40.223
+
+ip route add 10.127.0.0/16 via 123.176.40.110
+ip route add 10.128.0.0/16 via 123.176.40.223
+ip route add 10.129.0.0/17 via 123.176.40.223
+ip route add 10.131.0.0/16 via 123.176.40.109
+
+ip route add 10.132.0.0/16 via 123.176.40.109
+ip route add 10.133.0.0/16 via 123.176.40.109
+ip route add 10.134.0.0/17 via 123.176.40.109
+ip route add 10.134.128.0/17 via 123.176.40.109
+
+ip route add 10.136.0.0/17 via 123.176.40.109
+ip route add 10.137.0.0/16 via 123.176.40.131
+ip route add 10.140.0.0/16 via 123.176.40.131
+ip route add 10.141.0.0/16 via 123.176.40.223
+
+ip route add 10.144.0.0/16 via 123.176.40.223
+ip route add 10.145.0.0/16 via 123.176.40.110
+ip route add 10.146.0.0/16 via 123.176.40.145
+ip route add 10.147.0.0/16 via 123.176.40.145
+
+ip route add 10.148.0.0/16 via 123.176.40.145
+ip route add 10.151.0.0/17 via 123.176.40.145
+ip route add 10.151.128.0/17 via 123.176.40.145
+ip route add 10.152.0.0/16 via 123.176.40.110
+
+ip route add 10.153.0.0/16 via 123.176.40.40
+ip route add 10.176.0.0/16 via 123.176.40.40
+ip route add 10.182.0.0/16 via 123.176.40.40
+ip route add 10.183.0.0/16 via 123.176.40.40
+
+ip route add 10.184.0.0/16 via 123.176.40.40
+ip route add 10.185.0.0/16 via 123.176.40.40
+ip route add 10.186.0.0/16 via 123.176.40.40
+ip route add 10.187.0.0/16 via 123.176.40.40
+
+ip route add 10.188.0.0/16 via 123.176.40.40
+ip route add 10.189.0.0/16 via 123.176.40.40
+ip route add 10.190.0.0/16 via 123.176.40.40
+ip route add 10.191.0.0/16 via 123.176.40.40
+
+ip route add 10.192.0.0/16 via 123.176.40.40
+ip route add 10.193.0.0/16 via 123.176.40.40
+ip route add 10.194.0.0/16 via 123.176.40.40
+ip route add 10.195.0.0/26 via 123.176.40.40
+ip route add 10.195.0.0/18 via 123.176.40.40
+ip route add 10.195.0.0/16 via 123.176.40.40
+ip route add 10.195.64.0/26 via 123.176.40.40
+ip route add 10.195.64.0/18 via 123.176.40.40
+
+ip route add 10.195.96.0/27 via 123.176.40.40
+ip route add 10.195.96.0/19 via 123.176.40.40
+ip route add 10.195.128.0/26 via 123.176.40.40
+ip route add 10.195.128.0/18 via 123.176.40.40
+ip route add 10.195.192.0/28 via 123.176.40.40
+ip route add 10.195.192.0/26 via 123.176.40.40
+ip route add 10.196.0.0/16 via 123.176.40.40
+
+ip route add 10.198.0.0/16 via 123.176.40.40
+ip route add 10.199.0.0/16 via 123.176.40.40
+ip route add 10.200.0.0/16 via 123.176.40.40
+ip route add 10.201.0.0/16 via 123.176.40.40
+ip route add 10.202.0.0/16 via 123.176.40.40
+ip route add 10.203.0.0/16 via 123.176.40.40
+ip route add 10.204.0.0/16 via 123.176.40.40
+ip route add 10.205.0.0/16 via 123.176.40.40
+
+ip route add 10.206.0.0/16 via 123.176.40.40
+ip route add 10.207.0.0/16 via 123.176.40.40
+ip route add 10.208.0.0/16 via 123.176.40.40
+ip route add 10.209.0.0/16 via 123.176.40.40
+ip route add 10.213.0.0/16 via 123.176.40.40
+ip route add 10.214.0.0/16 via 123.176.40.40
+
+
+
+ip route add 10.215.0.0/16 via 123.176.40.40
+ip route add 10.216.0.0/16 via 123.176.40.40
+ip route add 10.217.0.0/16 via 123.176.40.40
+ip route add 10.218.0.0/16 via 123.176.40.40
+ip route add 10.219.0.0/16 via 123.176.40.40
+
+ip route add 10.220.0.0/16 via 123.176.40.40
+ip route add 10.221.0.0/16 via 123.176.40.40
+ip route add 10.222.0.0/16 via 123.176.40.40
+ip route add 10.223.0.0/16 via 123.176.40.40
+
+ip route add 10.224.0.0/16 via 123.176.40.40
+ip route add 10.225.0.0/16 via 123.176.40.40
+ip route add 10.226.0.0/16 via 123.176.40.40
+ip route add 10.227.0.0/16 via 123.176.40.40
+
+ip route add 10.228.0.0/16 via 123.176.40.40
+ip route add 10.229.0.0/16 via 123.176.40.40
+ip route add 10.230.0.0/16 via 123.176.40.40
+ip route add 10.231.0.0/16 via 123.176.40.40
+
+ip route add 10.232.0.0/16 via 123.176.40.40
+ip route add 10.233.0.0/16 via 123.176.40.40
+ip route add 10.234.0.0/16 via 123.176.40.40
+ip route add 10.235.0.0/16 via 123.176.40.40
+ip route add 10.236.0.0/16 via 123.176.40.40
+
+ip route add 10.237.0.0/16 via 123.176.40.40
+ip route add 10.238.0.0/16 via 123.176.40.40
+ip route add 10.239.0.0/16 via 123.176.40.40
+
+ip route add 10.240.0.0/16 via 123.176.40.40
+ip route add 10.241.0.0/16 via 123.176.40.40
+ip route add 10.242.0.0/16 via 123.176.40.40
+ip route add 10.243.0.0/16 via 123.176.40.40
+  
+ip route add 10.244.0.0/16 via 123.176.40.40
+ip route add 10.245.0.0/16 via 123.176.40.40
+ip route add 10.246.0.0/16 via 123.176.40.40
+
+ip route add 10.247.0.0/16 via 123.176.40.40
+ip route add 10.248.0.0/16 via 123.176.40.40
+ip route add 10.249.0.0/16 via 123.176.40.40
+ 
+ip route add 10.251.0.0/16 via 123.176.40.40
+ip route add 10.252.0.0/16 via 123.176.40.40
+ip route add 10.254.0.0/16 via 123.176.40.40
+ip route add 10.255.0.0/16 via 123.176.40.40
+
+####################################################
+
+ip route del 10.178.0.0/18 via 123.176.40.40
+ip route del 10.178.0.0/16 via 123.176.40.40
+ip route del 10.248.0.0/16 via 123.176.40.40
+ip route del 10.249.0.0/16 via 123.176.40.40
+ip route del 10.251.0.0/16 via 123.176.40.40
+ip route del 10.252.0.0/16 via 123.176.40.40
+
+
+ip route del 10.251.0.0/16 via 123.176.40.40
+ip route del 10.252.0.0/16 via 123.176.40.40
+ip route del 10.254.0.0/16 via 123.176.40.40
+ip route del 10.255.0.0/16 via 123.176.40.40
+
+ip route del 10.247.0.0/16 via 123.176.40.40
+ip route del 10.248.0.0/16 via 123.176.40.40
+ip route del 10.249.0.0/16 via 123.176.40.40
+
+ip route del 10.244.0.0/16 via 123.176.40.40
+ip route del 10.245.0.0/16 via 123.176.40.40
+ip route del 10.246.0.0/16 via 123.176.40.40
+
+ip route del 10.240.0.0/16 via 123.176.40.40
+ip route del 10.241.0.0/16 via 123.176.40.40
+ip route del 10.242.0.0/16 via 123.176.40.40
+ip route del 10.243.0.0/16 via 123.176.40.40
+
+ip route del 10.237.0.0/16 via 123.176.40.40
+ip route del 10.238.0.0/16 via 123.176.40.40
+ip route del 10.239.0.0/16 via 123.176.40.40
+
+
+ip route del 10.232.0.0/16 via 123.176.40.40
+ip route del 10.233.0.0/16 via 123.176.40.40
+ip route del 10.234.0.0/16 via 123.176.40.40
+ip route del 10.235.0.0/16 via 123.176.40.40
+ip route del 10.236.0.0/16 via 123.176.40.40
+
+ip route del 10.228.0.0/16 via 123.176.40.40
+ip route del 10.229.0.0/16 via 123.176.40.40
+ip route del 10.230.0.0/16 via 123.176.40.40
+ip route del 10.231.0.0/16 via 123.176.40.40
+
+ip route del 10.224.0.0/16 via 123.176.40.40
+ip route del 10.225.0.0/16 via 123.176.40.40
+ip route del 10.226.0.0/16 via 123.176.40.40
+ip route del 10.227.0.0/16 via 123.176.40.40
+
+
+
+
+

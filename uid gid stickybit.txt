@@ -1,0 +1,9 @@
+setgid::
+chmod g+s (file name)
+s - rwx
+S - rw
+setuid::
+chmod u+s (filename)
+stickybit :: to make no user delete this file
+* chmod 1777 (filename)
+add 1 before permissions to enable sticky bit

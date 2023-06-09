@@ -1,0 +1,32 @@
+windows 2012 2016 patch update::
+
+incmd : route print
+
+incmd : route print >> desktop\route-0000.txt
+
+take snap of drivers
+
+check for updates
+
+after downloading the updates restart
+
+check dates routes drivers
+
+on the kaspersky
+
+first vms patch updateto be done and shutdown after that related hyper v patch updates done and restart and power on both vms
+
+For windows 2019 patch update::
+in run: gpedit.msc
+
+administrative templates>>windows components>>windows update>>specify intranet microsoft update location >> disable >> apply
+
+in cmd : gpupdate 
+
+ping google.com to check whether internet allowed or not
+
+in run : ncpa.cpl >> change secondary preferences 202.53.8.8   8.8.8.8
+
+appwiz.cpl   to uninstall a programme
+
+mstsc to open remote desktop connection

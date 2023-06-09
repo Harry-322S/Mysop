@@ -1,0 +1,24 @@
+@echo off
+set a=%DATE:~4,2%_%DATE:~7,2%_%DATE:~10,4%
+ren C:\Users\Administrator\Desktop\reportstore\backup.csv  BACKUP_%a%.csv
+ren C:\Users\Administrator\Desktop\reportstore\restore.csv  restore_%a%.csv
+
+@echo open 10.100.111.55>> putfiles.txt
+@echo dchyd>> putfiles.txt
+@echo bgt54rfV>> putfiles.txt
+@echo prompt>> putfiles.txt
+@echo lcd C:\Users\Administrator\Desktop\reportstore>> putfiles.txt
+@echo cd /home/report>> putfiles.txt
+@echo put BACKUP_%a%.csv>> putfiles.txt
+@echo put restore_%a%.csv>> putfiles.txt
+@echo bye >> putfiles.txt
+
+
+ftp -i -s:putfiles.txt
+
+del putfiles.txt
+del BACKUP_%a%.csv
+del restore_%a%.csv
+
+pause
+

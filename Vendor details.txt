@@ -1,0 +1,30 @@
+TERIX: 
+rc@terix.com   - 'Response Centre'
+rc@ops.terix.com 
+service@ops.terix.com
+service@terix.com
+
+NAME	Email ID	Mobile Number
+Gowtham KT	kgowtham@terix.com 
+6361134164
+Satheesh Chandran	schandran@terix.com
+9688821830
+Ramesh Meenappa	rmeenappa@terix.com
+9739111772
+
+
+Inspirisys:
+gsd@Inspirisys.com - 'Global Service Desk'
+g.muniraj@inspirisys.com  -   Muniraj G
+
+NAME	Email ID	Mobile Number
+MICHAEL AROCKIYA DASS	michaelarockiyadass@inspirisys.com  
+9738827448
+Siddhartha Kumar	Siddhartha.Kumar@inspirisys.com   
+9886651391
+Keshava Murthy K	keshava.murthy@inspirisys.com 
+ 7259-335007
+
+Dell:
+1800 425 2067   -   Business hours 8AM to 6PM – Ticket raising through phone call.
+1800 425 9045   -   24/7 Support    - Ticket raising through phone call

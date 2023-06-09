@@ -1,0 +1,39 @@
+Rsync command uses
+
+
+to copy to a remote server
+
+rsync -avz -e ssh /path/to/source/ user@remote_host:/path/to/destination/
+
+-avz and -e ssh are command line options used with rsync to specify how the data should be transferred and over which protocol.
+
+-a: This option stands for "archive" and is equivalent to specifying -rlptgoD. It preserves the permissions, ownership, modification time, group, and other attributes of the files being transferred.
+
+-v: This option stands for "verbose" and displays detailed information about the progress of the transfer, including the list of files being transferred, their sizes, and transfer rates.
+
+-z: This option enables compression during the transfer, which can reduce the amount of data sent over the network and speed up the transfer.
+
+-e: This option specifies the remote shell to use for the transfer. In this case, ssh is used to establish a secure shell connection between the local and remote servers.
+
+By combining these options, rsync will transfer the data recursively while preserving the file attributes and using compression to speed up the transfer. The transfer will be done securely over SSH.
+
+To set up password-less authentication for rsync transfers, you can use SSH key pairs. Here's how to set it up:
+
+ssh-keygen -t rsa
+
+ssh-copy-id user@remote_host
+
+To test the connection
+
+ssh user@remote_host
+
+To schedule a cronjob
+
+0 0 * * * rsync -avz -e ssh /path/to/source/ user@remote_host:/path/to/destination/
+
+
+
+0 */6 * * * rsync -avz /var/www/html/ root@10.100.102.71:/var/www/html/
+
+
+

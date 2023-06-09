@@ -1,0 +1,27 @@
+Here is how you can manually install Python 3 on CentOS 6.5:
+
+Download the Python 3 source code from the official website (https://www.python.org/downloads/) to your local system.
+
+Extract the downloaded tar file:
+
+ruby
+Copy code
+$ tar xvf Python-3.x.y.tar.xz
+Change to the extracted directory:
+shell
+Copy code
+$ cd Python-3.x.y
+Run the configure script to prepare the build environment:
+shell
+Copy code
+$ ./configure
+Build and install Python 3:
+go
+Copy code
+$ make
+$ sudo make install
+Verify the installation by checking the version:
+ruby
+Copy code
+$ python3.x -V
+Please note that you need to have the required dependencies and build tools installed on your system, such as GCC, make, and the development headers for libssl and libffi.

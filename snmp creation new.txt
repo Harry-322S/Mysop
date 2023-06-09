@@ -1,0 +1,4 @@
+service snmpd stop
+net-snmp-create-v3-user -ro -A @cthYd@123456 -a MD5 -x DES hydnms
+service snmpd restart
+snmpwalk -u hydnms -A @cthYd@123 -a MD5 -l authnoPriv 127.0.0.1 -v3

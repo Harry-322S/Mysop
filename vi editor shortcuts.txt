@@ -1,0 +1,57 @@
+Sure, here are some common vi editor shortcuts in Linux:
+
+Basic Movement:
+h: Move left one character
+j: Move down one line
+k: Move up one line
+l: Move right one character
+0: Move to the beginning of the line
+$: Move to the end of the line
+w: Move to the beginning of the next word
+b: Move to the beginning of the previous word
+G: Move to the end of the file
+gg: Move to the beginning of the file
+Insert Mode:
+i: Insert text before the cursor
+a: Insert text after the cursor
+o: Insert a new line below the current line and start inserting text
+O: Insert a new line above the current line and start inserting text
+Esc: Exit insert mode
+Editing:
+x: Delete the character under the cursor
+dd: Delete the current line
+yy: Copy the current line
+p: Paste the previously copied or deleted text after the cursor
+u: Undo the last change
+Ctrl + r: Redo the last change
+Search and Replace:
+/search_text: Search for a string in the file (use n to find the next occurrence)
+:%s/old_text/new_text/g: Replace all occurrences of a string in the file
+Saving and Exiting:
+:w: Save the file
+:q: Quit vi
+:wq: Save the file and quit vi
+These are just some of the basic vi editor shortcuts. There are many more advanced features and shortcuts that you can learn as you become more familiar with vi.
+
+
+
+
+Harsh reddy
+i want to remove some ips in my file all at once throuh vi
+Sure! Here's how you can remove multiple IPs from a file at once in vi:
+
+Open the file in vi by typing vi filename in the terminal.
+
+Use the / command to search for the first IP address you want to remove. For example, to search for the IP address 192.168.1.100, type /192.168.1.100 and press Enter.
+
+Once the IP address is highlighted, press dd to delete the line containing the IP address.
+
+Use the n command to move to the next occurrence of the IP address you want to remove. For example, type n and press Enter to move to the next occurrence of 192.168.1.100.
+
+Repeat steps 3 and 4 until all occurrences of the IP address have been deleted.
+
+Once you've removed all the IPs you want to delete, save the file by typing :w and pressing Enter.
+
+Exit vi by typing :q and pressing Enter.
+
+Alternatively, if you know the line numbers that contain the IPs you want to remove, you can delete them all at once using the :delete command. For example, to delete lines 5, 10, and 15, type :5,15delete and press Enter. This will delete lines 5 through 15, inclusive. Make sure to save the file after making the changes, as described in step 6 above.

@@ -1,0 +1,13 @@
+RSYNC::
+rsync:Rsync (Remote Sync) is a most commonly used command for copying and synchronizing files 
+      and directories remotely as well as locally in Linux/Unix systems.It is incremental load
+      means if you add the files or directories and modify the data in files are affected destination location) 
+     rsync -avz vivek/ 192.168.246.130:/vivek
+         (Its copy the files or direcories into vivek in 128 server to vivek directory in 130 server)
+         sending incremental file list
+         ./
+         file4
+         file5
+         dir1/
+         sent 434 bytes  received 62 bytes  330.67 bytes/sec
+         total size is 476  speedup is 0.96

@@ -1,0 +1,13 @@
+SCREEN COMMAND :
+
+screen -S (name)
+
+crtl a + d -- to come out and detach
+screen -r  --  to reattach to screen
+
+screen -ls   -- to see list of availabe screen
+
+
+if multiple screen are there 
+
+screen -r (name)

@@ -1,0 +1,11 @@
+SCP
+
+Secure copy of files from remote server
+
+to copy a directory
+
+scp -r root@10.100.109.130:/root/Unix /root/Unix
+
+
+
+to copy a file remove -r and add file name

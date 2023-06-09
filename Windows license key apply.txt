@@ -1,0 +1,33 @@
+SOP for Evaluation to Windows 2019 Server Std License
+
+DISM /online /Get-CurrentEditon
+DISM /Online /Set-Edition:ServerStandard /ProductKey:N69G4-B89J2-4G8F4-WWYCC-J464C /AcceptEula     (Apply duplicate key first)
+
+restart here
+
+slmgr /ipk 3J8YN-KBMY8-PYV7P-FGVX8-QDDFD (Original key here)
+slmgr /ato
+slmgr.vbs /dlv
+
+
+
+for 2016 licnese activation
+
+dism /online /set-edition:ServerStandard /productkey:WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY /accepteula
+
+<SFTP><DATA><LWH>Password - webprod@</LWH><FWH>webprod</FWH></DATA>
+
+<SFTP><DATA><LWH>Password - appprod@</LWH><FWH>appprod</FWH></DATA>
+
+DILEEP PROCESS:
+Activate license in Windows 2016 : 
+
+DISM /online /Get-TargetEditions
+DISM /online /Set-Edition:<edition ID> /ProductKey:XXX-XXXX-XXXX-XXXX-XXXX /AcceptEula
+DISM /online /Get-TargetEditions
+
+Example : 
+
+DISM /online /Get-TargetEditions
+DISM /online /Set-Edition:ServerStandard /ProductKey:YQR3Q-W9NRG-G83WT-28X4M-G3CHP /AcceptEula
+DISM /online /Get-TargetEditions

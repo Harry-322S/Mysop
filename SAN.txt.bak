@@ -1,0 +1,56 @@
+109.85 - BRMDBRAC1 - 1A 2A
+109.86 - BRMDBRAC2 - 1A 2A
+
+109.X - SBLDBRAC1 - 1A 2A
+109.X - SBLDBRAC2 - 1A 2A
+
+
+1.echo | format  ( before starting activity)
+2.cfgadm –al –o show_FCP_dev  (for scanning disks)
+3. echo | format
+4.format WWN NO
+
+format c0t60060E8012D142005040D14200000101d0
+
+format> l
+Ready to label disk, continue? 
+Ready to label disk, continue? y
+
+format> p
+
+
+PARTITION MENU:
+        0      - change `0' partition
+        1      - change `1' partition
+        2      - change `2' partition
+        3      - change `3' partition
+        4      - change `4' partition
+        5      - change `5' partition
+        6      - change `6' partition
+        7      - change `7' partition
+        select - select a predefined table
+        modify - modify a predefined partition table
+        name   - name the current table
+        print  - display the current table
+        label  - write partition map and label to the disk
+        !<cmd> - execute <cmd>, then return
+        quit
+partition> p
+Current partition table (default):
+Total disk cylinders available: 40958 + 2 (reserved cylinders)
+
+Part      Tag    Flag     Cylinders         Size            Blocks
+  0       root    wm       0 -    17      135.00MB    (18/0/0)       276480
+  1       swap    wu      18 -    35      135.00MB    (18/0/0)       276480
+  2     backup    wu       0 - 40957      299.99GB    (40958/0/0) 629114880
+  3 unassigned    wm       0                0         (0/0/0)             0
+  4 unassigned    wm       0                0         (0/0/0)             0
+  5 unassigned    wm       0                0         (0/0/0)             0
+  6        usr    wm      36 - 40957      299.72GB    (40922/0/0) 628561920
+  7 unassigned    wm       0                0         (0/0/0)             0
+  
+  
+  q
+  q
+
+slice id : c0t60060E8012D142005040D14200000101d0s6

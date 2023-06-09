@@ -1,0 +1,336 @@
+Server wwn nnumber c0:50:76:0c:45:0e:00:00
+
+Check from switch 1 and switch 2
+
+Ping check first
+
+fcping pwwn c0:50:76:0c:45:0e:00:00 vsan 1
+
+check connected to which fc Port
+
+show flogi database | include c0:50:76:0c:45:0e:00:00
+
+
+Show zone  | include 2A
+
+2A - 50:06:0e:80:12:d1:42:10
+4A - 50:06:0e:80:12:d1:42:30
+6A - 50:06:0e:80:12:d1:42:50
+8A - 50:06:0e:80:12:d1:42:70
+
+show flogi database | include 50:06:0e:80:12:d1:42:10  
+
+fc1/1 fc1/2 fc1/3 fc 1/4
+
+show interface fc1/1  -- To check traffic
+ 
+4A less tracffic
+
+---------------------------------------------------------------------------------------------
+10.100.111.205
+
+configure
+vsan database
+vsan 6 interface fc1/39
+device-alias database
+device-alias name actpopdrdb_111_118 pwwn c0:50:76:0c:45:0e:00:00
+exit
+device-alias commit
+
+zoneset name ACT_FAB2 vsan 6
+zone name G350_CL4A_actpopdrdb_111_118
+member pwwn 50:06:0e:80:12:d1:42:30
+member pwwn c0:50:76:0c:45:0e:00:00
+zoneset activate name ACT_FAB2 vsan 6
+copy running-config startup-config
+
+
+------------------------------------------------------------------------------------------------
+10.100.111.204
+
+configure
+vsan database
+vsan 5 interface fc1/39
+device-alias database
+device-alias name actpopdrdb_111_118 pwwn c0:50:76:0c:45:0e:00:02
+exit
+
+device-alias commit
+
+zoneset name ACT_FAB1 vsan 5
+zone name G350_CL3A_actpopdrdb_111_118
+member pwwn 50:06:0e:80:12:d1:42:20
+member pwwn c0:50:76:0c:45:0e:00:02
+zoneset activate name ACT_FAB1 vsan 5
+copy running-config startup-config
+-------------------------------------------------------------------
+10.100.111.204 For actpopdrci
+
+configure
+vsan database
+vsan 5 interface fc1/37
+device-alias database
+device-alias name actpopdrci_111_116 pwwn c0:50:76:0c:45:0f:00:02
+exit
+
+device-alias commit
+
+zoneset name ACT_FAB1 vsan 5
+zone name G350_CL3A_actpopdrci_111_116
+member pwwn 50:06:0e:80:12:d1:42:20
+member pwwn c0:50:76:0c:45:0f:00:02
+
+zoneset activate name ACT_FAB1 vsan 5
+copy running-config startup-config
+
+
+10.100.111.205
+
+configure
+vsan database
+vsan 6 interface fc1/37
+device-alias database
+device-alias name actpopdrci_111_116 pwwn c0:50:76:0c:45:0f:00:00
+exit
+device-alias commit
+
+zoneset name ACT_FAB2 vsan 6
+zone name G350_CL4A_actpopdrci_111_116
+member pwwn 50:06:0e:80:12:d1:42:30
+member pwwn c0:50:76:0c:45:0f:00:00
+zoneset activate name ACT_FAB2 vsan 6
+copy running-config startup-config
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+10.100.111.204 For actfioridrdb
+
+configure
+vsan database
+vsan 5 interface fc1/37
+device-alias database
+device-alias name actfioridrdb_111_117 pwwn c0:50:76:0c:45:0f:00:06
+exit
+device-alias commit
+
+zoneset name ACT_FAB1 vsan 5
+zone name G350_CL3A_actfioridrdb_111_117
+member pwwn 50:06:0e:80:12:d1:42:20
+member pwwn c0:50:76:0c:45:0f:00:06
+zoneset activate name ACT_FAB1 vsan 5
+copy running-config startup-config
+
+
+10.100.111.205
+
+configure
+vsan database
+vsan 6 interface fc1/37
+device-alias database
+device-alias name actfioridrdb_111_117 pwwn c0:50:76:0c:45:0f:00:04
+exit
+device-alias commit
+
+zoneset name ACT_FAB2 vsan 6
+zone name G350_CL4A_actfioridrdb_111_117
+member pwwn 50:06:0e:80:12:d1:42:30
+member pwwn c0:50:76:0c:45:0f:00:04
+zoneset activate name ACT_FAB2 vsan 6
+copy running-config startup-config
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+10.100.111.204 For actsolmandrfo
+
+
+configure
+vsan database
+vsan 5 interface fc1/37
+device-alias database
+device-alias name actsolmandrfo_111_125 pwwn c0:50:76:0c:45:0f:00:0a
+exit
+
+device-alias commit
+
+zoneset name ACT_FAB1 vsan 5
+zone name G350_CL3A_actsolmandrfo_111_125
+member pwwn 50:06:0e:80:12:d1:42:20
+member pwwn c0:50:76:0c:45:0f:00:0a
+zoneset activate name ACT_FAB1 vsan 5
+copy running-config startup-config
+
+
+10.100.111.205
+
+configure
+vsan database
+vsan 6 interface fc1/37
+device-alias database
+device-alias name actsolmandrfo_111_125 pwwn c0:50:76:0c:45:0f:00:08
+exit
+device-alias commit
+
+zoneset name ACT_FAB2 vsan 6
+zone name G350_CL4A_actsolmandrfo_111_125
+member pwwn 50:06:0e:80:12:d1:42:30
+member pwwn c0:50:76:0c:45:0f:00:08
+zoneset activate name ACT_FAB2 vsan 6
+copy running-config startup-config
+
+--------------------------------------------------------------------------------------------------------------------------
+
+10.100.111.204 For actwebdidr  (already in vsan 5)
+
+
+
+configure
+vsan database
+vsan 5 interface fc1/39
+device-alias database
+device-alias name actwebdidr_110_51 pwwn c0:50:76:0c:45:0e:00:1a
+exit
+
+device-alias commit
+
+zoneset name ACT_FAB1 vsan 5
+zone name G350_CL3A_actwebdidr_110_51
+member pwwn 50:06:0e:80:12:d1:42:20
+member pwwn c0:50:76:0c:45:0e:00:1a
+zoneset activate name ACT_FAB1 vsan 5
+copy running-config startup-config
+
+
+10.100.111.205 (already in vsan 6)
+
+configure
+vsan database
+vsan 6 interface fc1/39
+device-alias database
+device-alias name actwebdidr_110_51 pwwn c0:50:76:0c:45:0e:00:18
+exit
+device-alias commit
+
+zoneset name ACT_FAB2 vsan 6
+zone name G350_CL4A_a1ctwebdidr_110_5
+member pwwn 50:06:0e:80:12:d1:42:30
+member pwwn c0:50:76:0c:45:0e:00:18
+zoneset activate name ACT_FAB2 vsan 6
+copy running-config startup-config
+------------------------------------------------------------------------------------------------------------
+10.100.111.204 For actwebdidrfo already in vsan 5
+
+
+
+configure
+vsan database
+vsan 5 interface fc1/37
+device-alias database
+device-alias name actwebdidrfo_110_53 pwwn c0:50:76:0c:45:0f:00:1a
+exit
+
+device-alias commit
+
+zoneset name ACT_FAB1 vsan 5
+zone name G350_CL3A_actwebdidrfo_110_53
+member pwwn 50:06:0e:80:12:d1:42:20
+member pwwn c0:50:76:0c:45:0f:00:1a
+zoneset activate name ACT_FAB1 vsan 5
+copy running-config startup-config
+
+
+10.100.111.205 already in vsan 6
+
+configure
+vsan database
+vsan 6 interface fc1/37
+device-alias database
+device-alias name actwebdidrfo_110_53 pwwn c0:50:76:0c:45:0f:00:18
+exit
+device-alias commit
+
+zoneset name ACT_FAB2 vsan 6
+zone name G350_CL4A_actwebdidrfo_110_53
+member pwwn 50:06:0e:80:12:d1:42:30
+member pwwn c0:50:76:0c:45:0f:00:18
+zoneset activate name ACT_FAB2 vsan 6
+copy running-config startup-config
+-----------------------------------------------------------------------------------------------------
+10.100.111.204 For actrouterdr already in vsan 5
+
+
+
+configure
+vsan database
+vsan 5 interface fc1/37
+device-alias database
+device-alias name actrouterdr_110_50 pwwn c0:50:76:0c:45:0f:00:16
+exit
+
+device-alias commit
+
+zoneset name ACT_FAB1 vsan 5
+zone name G350_CL3A_actrouterdr_110_50
+member pwwn 50:06:0e:80:12:d1:42:20
+member pwwn c0:50:76:0c:45:0f:00:16
+zoneset activate name ACT_FAB1 vsan 5
+copy running-config startup-config
+
+
+10.100.111.205 already in vsan 6
+
+configure
+vsan database
+vsan 6 interface fc1/37
+device-alias database
+device-alias name actrouterdr_110_50 pwwn c0:50:76:0c:45:0f:00:14
+exit
+device-alias commit
+
+zoneset name ACT_FAB2 vsan 6
+zone name G350_CL4A_actrouterdr_110_50
+member pwwn 50:06:0e:80:12:d1:42:30
+member pwwn c0:50:76:0c:45:0f:00:14
+zoneset activate name ACT_FAB2 vsan 6
+copy running-config startup-config
+----------------------------------------------------------------------------------------------
+10.100.111.204 For actrouterdrfo already in vsan 5
+
+
+
+configure
+vsan database
+vsan 5 interface fc1/39
+device-alias database
+device-alias name actrouterdrfo_110_52 pwwn c0:50:76:0c:45:0e:00:16
+exit
+
+device-alias commit
+
+zoneset name ACT_FAB1 vsan 5
+zone name G350_CL3A_actrouterdrfo_110_52
+member pwwn 50:06:0e:80:12:d1:42:20
+member pwwn c0:50:76:0c:45:0e:00:16
+zoneset activate name ACT_FAB1 vsan 5
+copy running-config startup-config
+
+
+10.100.111.205 already in vsan 6
+
+configure
+vsan database
+vsan 6 interface fc1/39
+device-alias database
+device-alias name actrouterdrfo_110_52 pwwn c0:50:76:0c:45:0e:00:14
+exit
+device-alias commit
+
+zoneset name ACT_FAB2 vsan 6
+zone name G350_CL4A_actrouterdrfo_110_52
+member pwwn 50:06:0e:80:12:d1:42:30
+member pwwn c0:50:76:0c:45:0e:00:14
+zoneset activate name ACT_FAB2 vsan 6
+copy running-config startup-config
+-----------------------------------------------------------------------------------------------------
+
+
+

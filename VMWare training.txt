@@ -1,0 +1,25 @@
+VMWARE TRAINING SESSION
+
+
+1.scsi controller - vmware paravirtual
+
+it is LSI Logic parallel so we can change to vmware paravirtual
+
+customerconnect.vmware.com
+
+vcenter has to be more modern than ESXI Version
+
+thin hard disk - it is not effected directly in ESXI as the storage increases it is occupied
+
+thick disk - directly allocated
+
+RV Tools to check disk utilisation and all parameters in ESXI
+
+Disk consoldation for vmdk snapshot files. disk has to be more space
+
+when we create snapshot vmdk file also created
+
+carbonio migrate
+
+
+sysprep  generalize shutdown 

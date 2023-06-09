@@ -1,0 +1,8 @@
+swap partiotions::
+Swap partition:
+  umount vive1
+  mkswap /dev/sdb1
+  swapon -a /dev/sdb1
+  free -m
+  swapon -s(It shows statistics)
+  swapoff /dev/sdb1(remove the swap on /dev/sdb1)

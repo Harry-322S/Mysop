@@ -1,0 +1,38 @@
+SAMBA:
+    1.Stop the SELINUX services:
+       check status:sestatus
+       stop the services:setenforce 0
+      Stop the IPTABLES Services:
+       Service iptables stop
+    2.rpm -qa samba*
+    3.yum install samba* -y --skip-broken
+    4.mkdir /lmr
+      chmod 777 /lmr
+    5.sambpasswd -a vivek
+       Enter the password
+       renetre the password
+    6.pdbedit -w -L
+    7.vi /etc/samba/smb.conf
+      make the changes like below:
+        [Share]
+        comment = Public Share
+        path = /lmr
+        public = no
+        writable = yes
+        printable = no
+        host allow = 192.168.246
+    7.testparm(For checking sasmba config changes)
+    8.Services are restart
+      service smb restart
+      service nmb restart
+    9.Make sure the samba service are up or not
+      chkconfig smb on
+      chkconfig nmb on
+   10.go to windows
+      1.right click on mycomputer->
+      2.select 'Map network driver'->Finish
+      3.Enter the below details in dialog bog
+        Select the drive(what directory we want) ex:Z
+        specify the path what we are specified in vi editor. Ex:share
+        Then It will take time then enter the samba user and pwd(vivek & pwd)
+        We will get the directory

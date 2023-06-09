@@ -1,0 +1,33 @@
+To use SNMPv3 with MD5 and DES in Ubuntu 20.04, follow these steps:
+
+Install the SNMP package:
+
+csharp
+Copy code
+sudo apt-get install snmpd
+Configure the SNMP daemon:
+
+Edit the snmpd configuration file:
+
+bash
+Copy code
+sudo nano /etc/snmp/snmpd.conf
+Add the following lines to the configuration file, replacing the values in angle brackets with your own:
+
+php
+Copy code
+rocommunity <your_community_string>
+createUser <username> MD5 <auth_password> DES <priv_password>
+Restart the SNMP daemon to apply the changes:
+
+Copy code
+sudo service snmpd restart
+Test the SNMPv3 connection:
+
+php
+Copy code
+snmpwalk -v3 -u <username> -a MD5 -A <auth_password> -x DES -X <priv_password> -l authPriv <hostname>
+If the connection is successful, you will receive information about the SNMP objects on the target host.
+
+
+

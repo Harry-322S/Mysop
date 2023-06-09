@@ -1,0 +1,19 @@
+SCP::
+SCP:Secure Copy:I already set the without password of ssh for 192.168.246.130
+                Means while copy to root directory it will not ask password else(other user) ask password
+    Create a file:
+     touch file1
+    Copy the file from one server to other server:
+     scp file1 192.168.246.130:/root/
+         (hear file1 is the filename and 192.168.246.130 is the other server ip address)
+     scp file2 192.168.246.128:/root/
+         (copy into the 128 server)
+     scp file3 Sree@192.168.246.130:/home/Sree/
+         (before copy the file it will ask password and then copy into the user Sree and directory 128 server)
+         (It will not allow to copy the file into user home directory)
+     scp -r vivek/ 192.168.246.130:/root
+         (Its copy the whole directry(vivek) in 130 server)
+     scp 192.168.246.130:/root/file1 /root/
+         (Its copy the file1 from 130 server to 128 server(where we are in))
+     scp -r 192.168.246.130:/root/vivek /root/
+         (Its copy the whole directory from 130 server into 128 server)

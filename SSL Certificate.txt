@@ -1,0 +1,34 @@
+SSLCertificateFile /etc/httpd/conf.d/Cert_Nov_2023/ServerCertificate.crt
+
+SSLCertificateKeyFile /etc/httpd/conf.d/Cert_Nov_2023/2022_actcorp_in.key
+
+SSLCertificateChainFile /etc/httpd/conf.d/Cert_Nov_2023/ChainBundle2.crt
+
+Pre-Activity
+1)copy the certificate to a folder in each server at location - /etc/httpd/conf.d/
+ 
+ 
+During Activity
+1) Login to each server  10.100.112.54
+10.100.112.45
+172.23.21.50
+10.100.112.40
+172.30.26.145
+172.23.21.12
+2)cd /etc/httpd/conf.d/
+3) mkdir Cert_Nov_2022
+4)paste the certificate inside this directory
+5) vi ssl.conf
+6)go to line Server Certificate: then put # in front of old certificate
+7)Now put the new certificate - SSLCertificateFile /etc/httpd/conf.d/Cert_Nov_2022/ServerCertificate.crt
+8)go to line Server Private Key: then put # in front of old certificate
+9)now put the new certicate - SSLCertificateKeyFile /etc/httpd/conf.d/Cert_Nov_2022/Nov2022_Nov2023key.key
+10)go to line Server Certificate Chain: then put # infront of old certificate
+11)now put the new certicate - SSLCertificateChainFile /etc/httpd/conf.d/Cert_Nov_2022/chainbundle.crt
+12)Now restart the httpd service - systemctl restart httpd then check httpd services - systemctl status httpd 
+ 
+Post-Activity
+1)ask app team to check the services
+2)check the certificate by login into url and check the certificate status
+
+

@@ -1,0 +1,33 @@
+echo "1" > /sys/class/fc_host/host2/issue_lip
+
+
+actroutersec:~ # multipath -ll
+360060e8012d142005040d14200000472 dm-0 HITACHI,OPEN-V
+size=100G features='0' hwhandler='0' wp=rw
+`-+- policy='service-time 0' prio=1 status=active
+  `- 2:0:0:1 sdb 8:16 active ready running
+360060e8012d142005040d14200000470 dm-1 HITACHI,OPEN-V
+size=200G features='0' hwhandler='0' wp=rw
+`-+- policy='service-time 0' prio=1 status=active
+  `- 2:0:0:0 sda 8:0  active ready running
+actroutersec:~ # cd /sys/class/fc_host/
+actroutersec:/sys/class/fc_host # ls
+host2  host3  host4  host5
+actroutersec:/sys/class/fc_host # echo "1" > /sys/class/fc_host/host2/issue_lip
+actroutersec:/sys/class/fc_host # echo "1" > /sys/class/fc_host/host3/issue_lip
+-bash: echo: write error: Input/output error
+actroutersec:/sys/class/fc_host # echo "1" > /sys/class/fc_host/host4/issue_lip
+actroutersec:/sys/class/fc_host # echo "1" > /sys/class/fc_host/host5/issue_lip
+actroutersec:/sys/class/fc_host # multipath -ll
+360060e8012d142005040d14200000472 dm-0 HITACHI,OPEN-V
+size=100G features='0' hwhandler='0' wp=rw
+`-+- policy='service-time 0' prio=1 status=active
+  `- 2:0:0:1 sdb 8:16 active ready running
+360060e8012d142005040d14200000135 dm-7 HITACHI,OPEN-V
+size=200G features='0' hwhandler='0' wp=rw
+`-+- policy='service-time 0' prio=1 status=active
+  `- 2:0:0:2 sdc 8:32 active ready running
+360060e8012d142005040d14200000470 dm-1 HITACHI,OPEN-V
+size=200G features='0' hwhandler='0' wp=rw
+`-+- policy='service-time 0' prio=1 status=active
+  `- 2:0:0:0 sda 8:0  active ready running

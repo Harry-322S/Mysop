@@ -1,0 +1,23 @@
+apt update
+apt install snmpd snmp libsnmp-dev -y
+systemctl stop snmpd && net-snmp-create-v3-user -ro -A @cthYd@123 -a MD5 -x DES hydnms
+systemctl start snmpd && systemctl enable snmpd
+sed -i 's/tmp                    ext4     defaults        0 0/tmp                    ext4     defaults,noexec,nosuid,nodev        0 0/g' /etc/fstab
+mount -o rw,remount,noexec,nosuid,nodev /tmp
+sed -i 's/#*.* @@remote-host:514/*.* @@10.100.111.55:514/g' /etc/rsyslog.conf
+sed -i 's/#ignorehosts yes/ignorehosts yes/g' /etc/ssh/sshd_config
+sed -i 's/#ClientAliveInterval 0/ClientAliveInterval 5m/g' /etc/ssh/sshd_config
+sed -i 's/#ClientAliveCountMax 3/ClientAliveCountMax 2/g' /etc/ssh/sshd_config
+systemctl restart rsyslog && systemctl restart ssh
+useradd dchyd && echo "bgt54rfV" | passwd --stdin dchyd
+echo "net.ipv4.ip_forward = 0" >> /etc/sysctl.conf
+echo "net.ipv4.conf.all.accept_redirects = 0" >> /etc/sysctl.conf
+echo "net.ipv4.conf.default.accept_source_route = 0" >> /etc/sysctl.conf
+echo "net.ipv4.conf.all.send_redirects = 0" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_syncookies = 1" >> /etc/sysctl.conf
+echo "net.ipv4.icmp_ignore_bogus_error_responses = 1" >> /etc/sysctl.conf
+echo "net.ipv4.icmp_echo_ignore_broadcasts = 1" >> /etc/sysctl.conf
+sysctl -p
+apt install ntp
+echo "server 123.176.37.249 prefer iburst" >> /etc/ntp.conf
+echo "server 123.176.40.175 prefer iburst" >> /etc/ntp.conf

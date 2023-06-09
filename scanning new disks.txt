@@ -1,0 +1,15 @@
+scanning new disks
+For scaning:
+  echo "- - -" > /sys/class/scsi_host/host0/scan
+
+Find out the hostnames:
+  ls /sys/class/scsi_host
+  cat /sys/class/scsi_host | hostname
+  systool -c fc_host | grep "port"?(It raised an error)
+
+  Fineout the hosts:
+      ls /sys/class/scsi_host/(It will displays the hosts in server(host0,host1,host))
+  Scan the hosts:
+      echo "- - -" > /sys/class/scsi_host/host0/scan
+      echo "- - -" > /sys/class/scsi_host/host1/scan
+      echo "- - -" > /sys/class/scsi_host/host2/scan

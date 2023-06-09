@@ -1,0 +1,25 @@
+
+
+First:
+
+To actually enable root logins, first you have to set a password for the root account, and then unlock the locked root account. If you don't set a password for the root account the passwd command will return
+
+`passwd: Unlocking the password would result in a passwordless account`
+
+So, first execute in a terminal
+
+###  sudo passwd root
+
+you will prompted for a new Unix password. Write it twice(second for confirmation).
+
+Then execute
+
+###### sudo passwd -u root
+
+to unlock the account. This should return
+
+passwd: password expiry information changed
+
+Change in the configuration file /etc/ssh/sshd_config
+
+PermitRootlogin Yes
