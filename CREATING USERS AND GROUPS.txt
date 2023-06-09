@@ -1,0 +1,33 @@
+Users and Groups:
+  There are three types of users:
+      1.Super user or root user
+      2.System user
+      3.Normal user
+  There are two important files:
+      1./etc/passwd
+      2./etc/shadow
+      Passwd:root:x:0:0:root:/root:/bin/bash
+             root:UserName
+             x:link to password file i.e./etc/shadow
+             0 or 1:UID
+             0 or 1:GID
+             root or bin:comment
+             /root or /bin:home directory of the user
+             /bin/bash or /sbin/nologin=shell
+      Shadow:root:$6$7sC3yFpndyOkLQ61$L.:17529:0:99999:7:::
+             root:UserName
+             :$6$7sC3yFpndyOkLQ61$L:Encrypted password
+             17529:Days since that password was last changed
+             0:Days after which password must be changed
+             99999:Days before password is to expire that user is warned
+             7=Days after the password is expires that user is disabled
+             A reserved field
+ Create the User:
+   useradd -g (group name) -c "(comment)" -d (/home/directory name) -s (shell) (user name)
+   
+   userdel (username)
+   to delete the user
+   
+   
+   
+     

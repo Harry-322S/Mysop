@@ -1,0 +1,46 @@
+firewalld ::
+systemctl enable --now firewalld
+ To see all available zones, use:
+
+$ sudo firewall-cmd --get-zones
+
+To see what’s unblocked in a specific zone:
+
+$ sudo firewall-cmd --zone work --list-all
+
+For an example, create a new permanent zone called corp, and then reload the firewall rules so that your new zone activates:
+
+$ sudo firewall-cmd --new-zone corp --permanent
+
+Before assigning any network interface to this new zone, add the ssh service so you can access it remotely. 
+Use the --permanent option to make this addition persist across reboots:
+
+$ sudo firewall-cmd --zone corp --add-service ssh --permanent
+
+Your new zone, called corp, is now active, rejects all but SSH traffic, and is assigned to no specific network interface. 
+To make corp the active and default zone for the network interface you want to protect (ens3 in this example), use the --change-interface option:
+
+$ firewall-cmd --change-interface ens3 \
+  --zone corp --permanent
+  
+  to add a service for example http 
+  
+  $ sudo firewall-cmd --add-service (http) --permanent
+  $ sudo firewall-cmd --reload
+  
+  Now that you know how to add a service, removing one is fairly intuitive:
+
+$ sudo firewall-cmd --remove-service http --permanent
+$ sudo firewall-cmd --reload
+  
+  to add a port in the firewall
+  $ sudo firewall-cmd --add-port 1622/tcp --permanent
+success
+$ sudo firewall-cmd --reload
+To remove that port, use --remove-port:
+
+$ sudo firewall-cmd --remove-port 1622/tcp --permanent
+success
+$ sudo firewall-cmd --reload
+  
+  

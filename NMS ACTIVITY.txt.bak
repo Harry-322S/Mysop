@@ -1,0 +1,30 @@
+172.23.24.101	root	         Blr!@Ct#24101$2020
+
+  
+172.23.24.18 	root  	 Scr@Blr@4          port 2525
+
+
+mount -t cifs -o username=administrator,password=nms@0987$ //10.100.100.175/MIS2_HYD /MIS1
+
+
+On 10.100.100.175-
+1. rename G:/MIS to G:/MIS_backup
+2. rename G:/MIS2 to G:/MIS
+3. check sharing path for G:/MIS
+On 172.23.24.18-
+1. Unmount partition "//172.30.26.131/MIS" which is mounted as /MIS1         
+command - "umount /MIS1" or "umount -l /MIS1"
+2. Mount  "10.100.100.175 - G:/MIS" sharing path to - /MIS1
+command -
+mount -t cifs -o username=administrator,password=************** //10.100.100.175/MIS (shared path) /MIS1
+
+DC rollback points (if required):
+Login- script servers 172.23.24.18
+1. Unmount partition "//10.100.100.175/MIS2" - "/MIS1"                                                    
+command - "umount /MIS1" or "umount -l /MIS1"
+2. Add mount partition from BLR NMS "//172.30.26.131/MIS" - "/MIS1"   
+mount -t cifs -o username=administrator,password=************** //172.30.26.131/MIS /MIS1
+
+mount -t cifs -o username=administrator,password=************** //10.100.100.175/MIS /
+
+nms@0987$

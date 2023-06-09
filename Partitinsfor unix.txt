@@ -1,0 +1,12 @@
+
+Please find SOP for partition in Linux.
+
+OS should be installed under LVM, based on request additional partitions.
+
+partitions:-
+/boot
+/
+swap
+/home
+/tmp
+/var/log

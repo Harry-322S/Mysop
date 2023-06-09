@@ -1,0 +1,11 @@
+mstsc 10.100.104.164   daily backup  
+administrator  PseYnk4TH6
+Username: admin
+Password: Act@123456
+BACKUP_08_04_2021
+restore_08_04_2021
+repostore
+dont close commvault, must be csv format
+
+to disable backups for billing:-
+policies-->schedule policies--> disable billing activity

@@ -1,0 +1,51 @@
+PART 1 - Creating backups in LOCAL Source Server-
+
+#mkdir /ftpdata/cron_schedule_backup
+#mkdir /ftpdata/dir_structure_backup
+#mkdir /ftpdata/passwd_file_backup
+
+2 2 */7 * *  gzip </etc/passwd >/ftpdata/passwd_file_backup/passwd_$(date -I).gz    #(Schedule for backup the passwd file every 7 days)#
+4 2 */7 * *  find /elitecorecdr/ -type d > /ftpdata/dir_structure_backup/dir_stu_elitecorecdr_$(date -I).txt    #(Schedule for backup the directory structure of mounted directory in the server every 7 days)#
+6 2 */7 * *  find /elitecorenetappnas/ -type d > /ftpdata/dir_structure_backup/dir_stu_elitecorenetappnas_$(date -I).txt    #(Schedule for backup the directory structure of mounted directory in the server every 7 days)#
+8 2 */7 * *  find /ftpdatanetappnas/ -type d > /ftpdata/dir_structure_backup/dir_stu_ftpdatanetappnas_$(date -I).txt    #(Schedule for backup the directory structure of mounted directory in the server every 7 days)#
+10 2 */7 * *  find /ftpdata/ -type d > /ftpdata/dir_structure_backup/dir_stu_ftpdata_$(date -I).txt
+12 2 */7 * * /usr/bin/crontab -l > /ftpdata/cron_schedule_backup/cronbkp_$(date -I).txt #(Scheduling for backup of cronjobs runs Every 7 days)#
+
+####### Below jobs for removing the backups for 90 days ######
+
+14 2 */7 * *  find /ftpdata/Cron_schedule_backup/cronbkp -type f -name ".txt" -mtime +90 -exec rm -rf {} \;    #(Removing the backup of cronjob file older than 90 days)#
+16 2 */7 * *  find /ftpdata/dir_structure_backup/dir_stu_elitecorecdr -type f -name ".txt" -mtime +90 -exec rm -rf {} \;   #(Removing the backup of directory structure file older than 90 days)#
+18 2 */7 * *  find /ftpdata/dir_structure_backup/dir_stu_elitecorenetappnas -type f -name ".txt" -mtime +90 -exec rm -rf {} \;
+20 2 */7 * *  find /ftpdata/dir_structure_backup/dir_stu_ftpdatanetappnas -type f -name ".txt" -mtime +90 -exec rm -rf {} \;   #(Removing the backup of directory structure file older than 90 days)#
+22 2 */7 * *  find /ftpdata/dir_structure_backup/dir_stu_ftpdata -type f -name ".txt" -mtime +90 -exec rm -rf {} \;
+24 2 */7 * *  find /ftpdata/passwd_file_backup/passwd -type f -name ".gz" -mtime +90 -exec rm -rf {} \;       #(Removing the backup of passwd file older than 90 days)#
+
+###################################################################
+Part 2- rsync BACKUP to destination NAS
+
+In server (FTP) Source- Creating the User
+#useradd ftp_backup
+#passwd ftp_backup
+
+Generating the ssh key-gen in ftp_backup user
+#ssh-keygen -t rsa -b 2048
+Then copy the ssh-copy-id to remote server
+#ssh-copy-id -i .ssh/id_rsa.pub ftp_backup@DESTINATION_IP
+Confirm with passwordless login
+
+In server source_ip (FTP) Source
+Than provide the Permission to ftp_backup users with below respected directory 
+#setfacl -m u:ftp_backup:rx /ftpdata/cron_schedule_backup/*
+#setfacl -m u:ftp_backup:rx /ftpdata/dir_structure_backup/*
+#setfacl -m u:ftp_backup:rx /ftpdata/passwd_file_backup/*
+
+In remote server (NAS) Destination-
+#mkdir /backups2/FtpDirUserCronBckup/FtpDirUserCronBckup_20.140
+Than provide the Permission to ftp_backup users with below respected directory 
+#setfacl -m u:ftp_backup:rwx /backups2/FtpDirUserCronBckup/FtpDirUserCronBckup_20.140/
+
+# For ftp_backup user through rsync # FTP Source-  
+26 2 */7 * *  rsync -avh ssh /ftpdata/cron_schedule_backup/ ftp_backup@destination_ip:/backups2/FtpDirUserCronBckup/FtpDirUserCronBckup_20.140/
+28 2 */7 * *  rsync -avh ssh /ftpdata/passwd_file_backup/ ftp_backup@destination_ip:/backups2/FtpDirUserCronBckup/FtpDirUserCronBckup_20.140/
+30 2 */7 * * rsync -avh ssh /ftpdata/dir_structure_backup/ ftp_backup@destination_ip:/backups2/FtpDirUserCronBckup/FtpDirUserCronBckup_20.140/
+

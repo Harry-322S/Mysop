@@ -1,0 +1,78 @@
+
+radius server installation ubuntu 20.04
+Here are the steps to install a RADIUS (Remote Authentication Dial-In User Service) server on Ubuntu 20.04:
+
+Install the FreeRADIUS package by running the command:
+Copy code
+sudo apt-get install freeradius freeradius-utils
+Create a new user and group to run the FreeRADIUS service by running the command:
+Copy code
+sudo adduser --system --no-create-home --group freerad
+Configure the FreeRADIUS service to use the new user and group by editing the file /etc/freeradius/radiusd.conf and changing the "user" and "group" settings to "freerad".
+
+Create a new client configuration file in /etc/freeradius/3.0/clients.conf and add the details of the client systems that will connect to the RADIUS server.
+
+Create a new users file in /etc/freeradius/3.0/users and add the details of the users that will be authenticated by the RADIUS server.
+
+Start the FreeRADIUS service by running the command:
+
+Copy code
+sudo systemctl start freeradius
+Enable the FreeRADIUS service to start automatically at boot by running the command:
+Copy code
+sudo systemctl enable freeradius
+Verify that the RADIUS server is running by running the command:
+Copy code
+sudo systemctl status freeradius
+Please note that this is a basic installation and configuration of RADIUS server, you will need to adjust the settings to match your specific environment and configure clients and users as needed.
+Also, it is worth mentioning that you should use a secure method to store the passwords, such as using a salted hash or encrypting them using a tool like ansible-vault.
+----------------------------------------------------------------------------------------------------------------------------------
+
+To update FreeRADIUS to the latest version on CentOS 7, you can follow these steps:
+
+Download the latest version of FreeRADIUS from the official website:
+
+ruby
+Copy code
+wget https://fossies.org/linux/misc/freeradius-server-3.2.2.tar.gz
+
+This will download the latest version of FreeRADIUS to the current directory.
+
+Extract the downloaded archive using the following command:
+
+Copy code
+tar xvfz freeradius-server-latest.tar.gz
+Change into the extracted directory using the following command:
+
+bash
+Copy code
+cd freeradius-server-*
+Install the required dependencies for building FreeRADIUS using the following command:
+
+Copy code
+sudo yum install -y openssl openssl-devel pcre pcre-devel libtalloc libtalloc-devel libnl3 libnl3-devel libtool
+Configure the build using the following command:
+
+javascript
+Copy code
+sudo ./configure --prefix=/usr/local --with-openssl --with-system-libtalloc --with-system-libnl
+This will configure the build to install FreeRADIUS to the /usr/local directory and use the system libraries for libtalloc and libnl.
+
+Build and install FreeRADIUS using the following commands:
+
+go
+Copy code
+sudo make
+sudo make install
+This will build and install FreeRADIUS to the directory specified in the --prefix option during configuration.
+
+Verify the installation by running the following command:
+
+bash
+Copy code
+/usr/local/sbin/radiusd -v
+
+
+
+
+

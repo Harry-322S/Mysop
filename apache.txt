@@ -1,0 +1,18 @@
+main configuration file is /etc/httpd/conf/httpd.conf
+serverRoot:: "/etc/httpd"
+PidFile:: Parentprocess
+ServerName :: www.example.com:80
+DocumentRoot :: where document files should be located /var/www/html
+ErrorLog :: /var/log/httpd/error_log
+Listen :: Port 80 not secure
+          Port 443
+yum install httpd
+elinks www.example.com
+vi /var/www/html
+we can edit from above directory 
+
+order deny,allow
+Deny from all
+Allow from (ips that can access website)
+
+Indexes

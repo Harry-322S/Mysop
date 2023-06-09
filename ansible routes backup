@@ -1,0 +1,306 @@
+- name: Backup routes on servers
+  hosts: servers
+  gather_facts: yes
+  vars:
+    backup_dir: /root/routes_backup
+  tasks:
+  - name: Create backup directory
+    file:
+      path: "{{ backup_dir }}"
+      state: directory
+  - name: Backup routes
+    shell: "route -n > {{ backup_dir }}/{{ inventory_hostname }}_routes.txt"
+  - name: Copy routes to Ubuntu server
+    synchronize:
+      src: "{{ backup_dir }}"
+      dest: /root/routes_backup
+      remote_src: yes
+This playbook can be run on the Ubuntu server by running the command:
+
+Copy code
+ansible-playbook -i hosts playbook.yml
+
+----------------------------------------working play book for above one ----------------------------------------
+- name: Backup routes on servers
+  hosts: porappservers
+  gather_facts: yes
+  vars:
+    backup_dir: /root/routes_backup/
+  tasks:
+  - name: Create backup directory
+    file:
+      path: "{{ backup_dir }}"
+      state: directory
+  - name: Backup routes
+    shell: "route -n > {{ backup_dir }}/{{ inventory_hostname }}_routes_{{ ansible_date_time.date }}.txt"
+  - name: Copy routes to Ubuntu server
+    fetch:
+      src: "{{ backup_dir }}/{{ inventory_hostname }}_routes_{{ ansible_date_time.date }}.txt"
+      dest: "{{ backup_dir }}"
+      flat: yes
+
+
+whereis ansible-playbook (it will tell the ansible location which we need to use in .sh file)
+
+/usr/bin/ansible-playbook
+
+
+first create .sh for above yml file
+
+
+vi routes.sh
+
+/usr/bin/ansible-playbook /etc/ansible/test.yml
+
+chmod +x routes.sh
+
+20 2 * * * /bin/bash /root/routes.sh
+
+
+----------------------------------------------------------------------------------------------------------------------
+With dchyd user taking backup
+
+vi dchydtest.yml
+
+- name: Backup routes on servers
+  hosts: dchyd
+  gather_facts: yes
+  vars:
+    backup_dir: /root/routes_backup/
+    backup_dir2: /home/dchyd/routes_backup/
+  tasks:
+  - name: Create backup directory
+    file:
+      path: "{{ backup_dir2 }}"
+      state: directory
+  - name: Backup routes
+    shell: "/sbin/route -n > {{ backup_dir2 }}/{{ inventory_hostname }}_routes_{{ ansible_date_time.date }}.txt"
+  - name: Copy routes to Ubuntu server
+    fetch:
+      src: "{{ backup_dir2 }}/{{ inventory_hostname }}_routes_{{ ansible_date_time.date }}.txt"
+      dest: "{{ backup_dir }}"
+      flat: yes
+
+
+----------------------------------------------------------------------------------------------------------------------
+without creating directory taking with dchyd user backup
+
+
+- name: Backup routes on servers
+  hosts: dchyd
+  gather_facts: yes
+  vars:
+    backup_dir: /root/routes_backup/
+  tasks:
+  - name: Backup routes
+    shell: /sbin/route -n > /tmp/{{ inventory_hostname }}_routes_{{ ansible_date_time.date }}.txt
+    register: routes_output
+  - name: Copy routes to Ansible server
+    fetch:
+      src: "/tmp/{{ inventory_hostname }}_routes_{{ ansible_date_time.date }}.txt"
+      dest: "{{ backup_dir }}"
+      flat: yes
+  - name: Remove routes file
+    file:
+      path: /tmp/{{ inventory_hostname }}_routes_{{ ansible_date_time.date }}.txt
+      state: absent
+
+-----------------------------------------------------------------------------------------------------------------------
+This playbook can be run on the Ubuntu server by running the command:
+
+Copy code
+ansible-playbook -i hosts playbook.yml
+Where hosts is the inventory file that contains the group of servers that you want to backup routes from.
+
+Please note that this is just an example and you will need to adjust the paths and settings to match your specific environment.
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Harsh reddy
+how to install ansible in ubuntu server
+To install Ansible on an Ubuntu server, you can use the package manager apt. Here are the steps to install Ansible:
+
+First, update the package index by running the command:
+Copy code
+sudo apt update
+Next, install the software-properties-common package, which allows you to manage the repositories that you want to use:
+Copy code
+sudo apt install software-properties-common
+Add the Ansible PPA (personal package archive) by running the command:
+Copy code
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+Finally, install Ansible by running the command:
+Copy code
+sudo apt install ansible
+Verify the installation by running the command:
+Copy code
+ansible --version
+You should see the version of Ansible that you just installed.
+
+Please note that the above instructions are for Ubuntu 20.04 LTS or later versions. If you are using an older version of Ubuntu, the package names or commands may be different.
+
+
+apt-get install sshpass
+
+ssh-keyscan <host> >> ~/.ssh/known_hosts
+
+/etc/ssh/ssh_config
+
+StrictHostKeyChecking no  ( we can do this without keyscan )
+
+when it is failed to connect
+
+ssh-keygen -R [hostname]
+
+When module fail occurs
+
+We use this for the host which is failed
+
+ansible_python_interpreter=/usr/bin/python2.7
+
+if hellman error occurs need to find out how to enable this variable in playbook
+
+ssh -o KexAlgorithms=diffie-hellman-group1-sha1 -o Ciphers=aes256-cbc test@123.123.123.123
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Harsh reddy
+how to add servers to the hosts in ansible servers
+In Ansible, the "hosts" file is used to specify the servers that Ansible will manage. Here are the steps to add servers to the Ansible hosts file:
+
+Open the Ansible hosts file using a text editor:
+Copy code
+sudo nano /etc/ansible/hosts
+Add your servers to the file, one per line. You can specify the servers by IP address or hostname. For example:
+Copy code
+192.168.1.100
+192.168.1.101
+server1.example.com
+server2.example.com
+You can also group the servers by adding a group name before the server name or IP address. For example:
+Copy code
+[webservers]
+192.168.1.100
+192.168.1.101
+
+[dbservers]
+server1.example.com
+server2.example.com
+Save the file and exit the text editor.
+
+You can test your connection to the newly added servers by running the following command:
+
+Copy code
+ansible all -m ping
+This command will run the ping module on all the servers in your hosts file. If the servers are reachable, you should see "pong" as the output for each server.
+
+Please note that the above instructions are for Ubuntu 20.04 LTS or later versions. If you are using an older version of Ubuntu, the location of the hosts file may be different.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Harsh reddy
+how to give password of servers in ansible hosts
+In Ansible, you can specify the password for each server in the hosts file so that Ansible can connect to the server without prompting for a password. Here are the steps to specify the password for each server in the Ansible hosts file:
+
+Open the Ansible hosts file using a text editor:
+Copy code
+sudo nano /etc/ansible/hosts
+Add the server information in the following format:
+Copy code
+server1 ansible_host=192.168.1.100 ansible_user=username ansible_password=password
+Repeat the step for all the servers you want to add.
+
+Save the file and exit the text editor.
+
+Note that storing plaintext passwords in the hosts file is not recommended as it's a security vulnerability. A better approach is to use ssh key based authentication or use ansible vault to encrypt passwords.
+
+Another alternative is to use ansible_ssh_pass instead of ansible_password. This way the password will be prompted at runtime.
+
+Please note that the above instructions are for Ubuntu 20.04 LTS or later versions. If you are using an older version of Ubuntu, the location of the hosts file may be different.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Harsh reddy
+how to create ansible user
+In order to run Ansible playbooks, you need a user that has the necessary permissions to perform the tasks specified in the playbooks. Here are the steps to create an Ansible user on Ubuntu:
+
+Create a new user by running the command:
+Copy code
+sudo adduser ansible
+Set a password for the new user by running the command:
+Copy code
+sudo passwd ansible
+Add the new user to the sudo group so that it can perform tasks with elevated privileges by running the command:
+Copy code
+sudo usermod -aG sudo ansible
+Verify that the new user has been added to the sudo group by running the command:
+Copy code
+sudo cat /etc/group | grep sudo
+To allow this user to connect to other servers using ssh key based authentication, you will need to create a ssh-key for this user:
+Copy code
+sudo su - ansible
+ssh-keygen
+This will generate a ssh-key in the user's home directory. You can now copy this key to all the servers which you want to connect using this user.
+Please note that the above instructions are for Ubuntu 20.04 LTS or later versions. If you are using an older version of Ubuntu, the commands may be different.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+- name: Delete specific text file in destination directory
+  hosts: all
+  vars:
+    dest_dir: /path/to/destination/directory
+    file_to_delete: example.txt
+  tasks:
+    - name: Remove specific text file
+      file:
+        path: "{{ dest_dir }}/{{ file_to_delete }}"
+        state: absent
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Harsh reddy
+how to set a particular port in host group
+
+In Ansible, you can set a particular port for a host group by using the ansible_port variable in the host inventory file.
+
+Here is an example of how you can set the port for a host group called "mygroup" in the inventory file (usually located at /etc/ansible/hosts):
+
+csharp
+Copy code
+[mygroup]
+host1 ansible_port=2222
+host2 ansible_port=2222
+host3 ansible_port=2222
+In the above example, all the hosts in the "mygroup" group will use port 2222 for connecting to the remote server.
+
+You can also set the port variable in the ansible.cfg file
+
+csharp
+Copy code
+[defaults]
+remote_port = 2222
+This will set the default remote port for all the hosts in your inventory file.
+
+You can also set the port variable for a host by using the -k or --ask-pass flag when running a command using ansible, like so:
+
+css
+Copy code
+ansible -i inventory_file -k -m ping all
+It will prompt you to enter the password and also the port number you want to connect to.
+
+It is also possible to set the port variable as part of the ansible command, like so:
+
+css
+Copy code
+ansible -i inventory_file -m ping all -u root --ask-pass --ask-port
+It will prompt for both the password and port number.
+---------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,18 @@
+installation of mysql in linux::
+
+hostname -f
+sudo yum update
+yum install wget
+wget http://repo.mysql.com/mysql-community...
+sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
+yum update
+sudo yum install mysql-server
+sudo systemctl start mysqld
+sudo mysql_secure_installation
+yum remove mariadb mariadb-server
+sudo mysql_secure_installation
+#Set mysql password
+
+mysql -u root -p
+use mysql
+GRANT ALL ON *.* to root@'%' IDENTIFIED BY 'yourpassword';

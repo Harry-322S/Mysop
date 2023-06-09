@@ -1,0 +1,47 @@
+To save the results of the command in a file on your local host, you can use the delegate_to keyword in your playbook. Here's an example:
+
+yaml
+Copy code
+---
+- name: Run netstat command on remote hosts
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: Run netstat and cat commands
+    command: "netstat -tulpn | grep LISTEN & cat /etc/redhat-release"
+    register: result
+
+  - name: Save results to file on local host
+    copy:
+      content: "{{ result.stdout }}"
+      dest: "/tmp/netstat_results.txt"
+    delegate_to: localhost
+	
+This playbook will run the "netstat -tulpn | grep LISTEN & cat /etc/redhat-release" command on all hosts specified in the hosts section and save the results in a file named /tmp/netstat_results.txt on your local host.
+
+You can run the playbook using the following command: ansible-playbook -i <inventory_file> <playbook.yml> where <inventory_file> is the file containing a list of your remote hosts and <playbook.yml> is the name of your playbook file.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Here is an example of an Ansible playbook that can run the command "netstat -tulpn | grep LISTEN & cat /etc/redhat-release" on remote hosts:
+
+yaml
+Copy code
+---
+- name: Run netstat command on remote hosts
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: Run netstat and cat commands
+    command: "netstat -tulpn | grep LISTEN & cat /etc/redhat-release"
+    register: result
+
+  - name: Display output
+    debug:
+      var: result.stdout_lines
+	  
+This playbook will run the command on all hosts specified in the hosts section. The results of the command are stored in the result variable and displayed using the debug module.
+
+You can run this playbook using the following command: ansible-playbook -i <inventory_file> <playbook.yml> where <inventory_file> is the file containing a list of your remote hosts and <playbook.yml> is the name of your playbook file.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------

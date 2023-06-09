@@ -1,0 +1,4 @@
+setfacl -R -m u:username:permissions filename
+
+
+-R for recursive include sub directories in the folder

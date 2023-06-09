@@ -1,0 +1,11 @@
+AMP check in IDC-1 
+http://192.168.136.53 - Slot -A
+http://192.168.136.54 - Slot B
+Username:admin
+Password:admin
+
+http://192.168.136.57
+http://192.168.136.58
+For IDC-2
+Username:Liebert
+Password:Vertiv@123

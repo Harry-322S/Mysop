@@ -1,0 +1,12 @@
+https://yum.oracle.com/repo/OracleLinux/OL7/oracle/instantclient/x86_64/getPackage/oracle-instantclient19.14-basic-19.14.0.0.0-1.x86_64.rpm
+
+https://yum.oracle.com/repo/OracleLinux/OL7/oracle/instantclient/x86_64/getPackage/oracle-instantclient19.14-devel-19.14.0.0.0-1.x86_64.rpm
+
+
+
+route -p add 10.100.104.167 mask 255.255.255.255 172.23.24.250
+
+route -p add 172.23.24.47 mask 255.255.255.255 10.100.104.252
+
+
+

@@ -1,0 +1,14 @@
+lvrename /dev/vg0/lv-1 /dev/vg0/lv1
+ 
+
+
+cp -R Savita Burnwal/ /var/www/html/nextcloud/data/
+
+
+cp -R dc_support@acttv.in/ /var/www/html/nextcloud/data/dc_support@acttv.in
+
+
+sudo -u apache php /var/www/html/nextcloud/occ maintenance:mode --on
+
+
+/Clouddrive

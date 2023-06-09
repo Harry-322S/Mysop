@@ -1,0 +1,24 @@
+EXTENDING AND REDUCING LVM::
+Extended a file system:
+      lvextend -L +5G /dev/VG01/Lv01(It shows below message)
+        Extending logical volume Lv01 to 15.00 GiB
+        Logical volume Lv01 successfully resized
+        (It will not display resized(5G) in df -hT)
+      resize2fs /dev/VG01/Lv01
+        (It will display the extend size(5G) while executing df -hT)
+
+Reduce or sinc the file system 
+      umount Lvm (hear Lvm is the directory for lvm file sys)
+      resize2fs /dev/VG01/Lv01 8G(already file system has 16G)
+      e2fsck -f /dev/VG01/Lv01
+      resize2fs /dev/VG01/Lv01
+      lvreduce --size 8G /dev/VG01/Lv01
+        WARNING: Reducing active logical volume to 8.00 GiB
+        THIS MAY DESTROY YOUR DATA (filesystem etc.)
+        Do you really want to reduce Lv01? [y/n]:
+        press 'y'
+        Reducing logical volume Lv01 to 8.00 GiB
+        Logical volume Lv01 successfully resized
+      mkfs.ext4 /dev/VG01/Lv01
+      mount /dev/VG01/Lv01 Lvm
+      mount -a

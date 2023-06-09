@@ -1,0 +1,73 @@
+To install Prometheus and Grafana on Ubuntu 20.04, you can follow these steps:
+
+Add the Prometheus repository to your system:
+Copy code
+sudo add-apt-repository -y ppa:prometheus-maintainers/prometheus
+Update the package list:
+Copy code
+sudo apt update
+Install Prometheus:
+Copy code
+sudo apt install prometheus prometheus-node-exporter
+Start and enable the Prometheus service:
+Copy code
+sudo systemctl start prometheus
+sudo systemctl enable prometheus
+Add the Grafana repository to your system:
+Copy code
+sudo add-apt-repository -y "deb https://packages.grafana.com/oss/deb stable main"
+Download and add the Grafana repository key:
+Copy code
+curl -s https://packages.grafana.com/gpg.key | sudo apt-key add -
+Update the package list:
+Copy code
+sudo apt update
+Install Grafana:
+Copy code
+sudo apt install grafana
+Start and enable the Grafana service:
+Copy code
+sudo systemctl start grafana-server
+sudo systemctl enable grafana-server
+Access the Grafana web interface at http://your-server-ip:3000 and log in with the default credentials (username: admin, password: admin).
+Note: you should configure Prometheus and Grafana as per your requirement and security best practices.
+
+To install Prometheus and Grafana on Ubuntu 20.04, you can follow these steps:
+
+Add the Prometheus repository to your system:
+Copy code
+sudo add-apt-repository -y ppa:prometheus-maintainers/prometheus
+Update the package list:
+Copy code
+sudo apt update
+Install Prometheus:
+Copy code
+sudo apt install prometheus prometheus-node-exporter
+Start and enable the Prometheus service:
+Copy code
+sudo systemctl start prometheus
+sudo systemctl enable prometheus
+Add the Grafana repository to your system:
+Copy code
+sudo add-apt-repository -y "deb https://packages.grafana.com/oss/deb stable main"
+Download and add the Grafana repository key:
+Copy code
+curl -s https://packages.grafana.com/gpg.key | sudo apt-key add -
+Update the package list:
+Copy code
+sudo apt update
+Install Grafana:
+Copy code
+sudo apt install grafana
+Start and enable the Grafana service:
+Copy code
+sudo systemctl start grafana-server
+sudo systemctl enable grafana-server
+Access the Grafana web interface at http://your-server-ip:3000 and log in with the default credentials (username: admin, password: admin).
+Note: you should configure Prometheus and Grafana as per your requirement and security best practices.
+
+
+
+
+
+

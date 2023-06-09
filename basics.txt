@@ -1,0 +1,35 @@
+basics:::
+* ping (ip)  : to check whether server is running or down
+ctrl c : to stop
+* route -n   : to find the route details like ip gen mask
+* top         :  to moniter
+* vmstat      : to moniter 
+vmstat 10   : it shows statictics for every 10 seconds
+grep        : to search
+-i : case sensitive removing  
+kill (id)  : to kill the process
+ps   : to show running process
+ps -ef : to see the process with details
+who : to see who is using this server
+tar : to backup files
+tar -cvf (dir name).tar (files)  :: to archive
+tar -xvf (dir name).tar (files)  :: to unarchive
+gzip : to zip files
+gzip (file name).tar :: zip files
+gunzip (filename).tar.gz :: to unzip files
+lsof : to see list of files
+lsof -u (user) : to see user open files
+lsof (directory name) : to see who open directory
+df : disk free( df -ht)
+du : disk usage( du -sk)
+k for kilobytes M for mb G for gb 
+traceroute : to see how data transmission travelled from a local machine to remote one
+ls -sh : to see directory size
+du -sh * : to see directory size
+uname : to see release
+cat /etc/*release : to see which version released.
+locate : to search.
+du -sh .[!.]* *  : to search hidden files with size.
+-c : add to above command total output comes.
+du -sch /.[!.]* /*  : to investigate root directory size.
+ du --threshold=1G -ch /.[!.]* /*   : threshold limit of 1G in root directory.

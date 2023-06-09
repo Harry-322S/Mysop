@@ -1,0 +1,44 @@
+#!/bin/bash
+cat /etc/redhat-release
+sed -i 's/tmp                    xfs     defaults        0 0/tmp                    xfs     defaults,noexec,nosuid,nodev        0 0/g' /etc/fstab
+mount -o rw,remount,noexec,nosuid,nodev /tmp
+df -h
+rpm -qa | grep telnet
+rpm -qa | grep tel
+rpm -qa | grep rsh
+rpm -qa | grep rlogin
+rpm -qa | grep rcp
+rpm -qa | grep ypscrv
+rpm -qa | grep ypbind
+rpm -qa | grep tftp
+rpm -qa | grep talk
+rpm -qa | grep talkserver
+sed -i 's/#*.* @@remote-host:514/*.* @@10.100.111.55:514/g' /etc/rsyslog.conf
+sed -i 's/#ignorehosts yes/ignorehosts yes/g' /etc/ssh/sshd_config
+#cat << EOF >> /etc/sysctl.conf
+#net.ipv4.ip_forward = 0
+#net.ipv4.conf.all.accept_redirects = 0
+#net.ipv4.conf.default.accept_source_route = 0
+#net.ipv4.conf.all.send_redirects = 0
+#net.ipv4.tcp_syncookies = 1
+#net.ipv4.icmp_ignore_bogus_error_responses = 1
+#net.ipv4.icmp_echo_ignore_broadcasts = 1
+echo "net.ipv4.ip_forward = 0" >> /etc/sysctl.conf
+echo "net.ipv4.conf.all.accept_redirects = 0" >> /etc/sysctl.conf
+echo "net.ipv4.conf.default.accept_source_route = 0" >> /etc/sysctl.conf
+echo "net.ipv4.conf.all.send_redirects = 0" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_syncookies = 1" >> /etc/sysctl.conf
+echo "net.ipv4.icmp_ignore_bogus_error_responses = 1" >> /etc/sysctl.conf
+echo "net.ipv4.icmp_echo_ignore_broadcasts = 1" >> /etc/sysctl.conf
+sysctl -p
+echo "ClientAliveInterval 300" >> /etc/ssh/sshd_config
+service sshd restart
+echo "auth        required      pam_faillock.so preauth silent audit deny=3 unlock_time=600" >> /etc/pam.d/password-auth
+
+useradd dchyd; echo bgt54rfV | passwd dchyd --stdin
+yum install net-snmp -y
+service snmpd stop
+net-snmp-create-v3-user -ro -A @cthYd@123 -a MD5 -x DES hydnms
+service snmpd restart
+service snmpd restart
+systemctl enable snmpd

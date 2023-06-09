@@ -1,0 +1,15 @@
+installation of mysql in linux::
+
+yum remove mariadb mariadb-server
+            * rm -rf /var/lib/mysql
+            * rm /etc/my.cnf
+
+yum update -y
+yum install http://repo.mysql.com/yum/mysql-5.5-community/el/7/x86_64/mysql-community-release-el7-5.noarch.rpm
+yum install -y mysql-community-server
+rpm -qa | grep -i mysql-community
+service mysqld start
+service mysqld status
+mysql_secure_installation
+systemctl restart mysqld
+mysql -u root -p

@@ -1,0 +1,5 @@
+yum install cpan
+cpan install Net::Ping::External       (  Net::Ping::External ) its the perl module name
+perldoc -l  Net::Ping::External     (to check whether installed or not)
+
+cpan install -f -i (perl module name) to install force fully

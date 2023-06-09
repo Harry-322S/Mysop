@@ -1,0 +1,127 @@
+To list only the enabled services at system boot, run:
+
+$ sudo systemctl list-unit-files --type=service --state=enabled --all
+
+Disable interactive boot
+
+01. Login as root
+
+02. Edit this system file
+[root@daddylinux~]# nano /etc/sysconfig/init
+
+03. Go to end of the file
+You will see PROMPT=yes it’s change to PROMPT=no
+
+04. Save this file
+Ctrl + O
+
+05. Exit the file
+Ctrl + X
+
+
+
+
+Disable interactive hotkey startup at boot in centos 7
+To disable the interactive startup hotkey in CentOS 7, follow these steps:
+
+Open the grub configuration file with a text editor:
+javascript
+Copy code
+sudo nano /etc/default/grub
+Find the line that starts with GRUB_CMDLINE_LINUX and add systemd.unit=multi-user.target to the end of the line:
+makefile
+Copy code
+GRUB_CMDLINE_LINUX="quiet rhgb systemd.unit=multi-user.target"
+Save and close the file.
+
+Regenerate the grub configuration:
+
+bash
+Copy code
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+This will prevent the interactive startup hotkey from appearing at boot time, and instead boot directly into the default target (in this case, multi-user.target).
+
+Note: The exact steps may vary slightly depending on the specific version of CentOS 7 you're using.
+
+
+
+
+Harsh reddy
+in ubuntu 20.04
+To disable the interactive startup hotkey in Ubuntu 20.04, follow these steps:
+
+Open the grub configuration file with a text editor:
+javascript
+Copy code
+sudo nano /etc/default/grub
+Find the line that starts with GRUB_CMDLINE_LINUX_DEFAULT and add quiet splash to the end of the line:
+makefile
+Copy code
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+Save and close the file.
+
+Regenerate the grub configuration:
+
+sql
+Copy code
+sudo update-grub
+This will prevent the interactive startup hotkey from appearing at boot time, and instead boot directly into the default target.
+
+Note: The exact steps may vary slightly depending on the specific version of Ubuntu 20.04 you're using.
+
+
+
+
+Harsh reddy
+what is mean quiet splash
+quiet splash is a boot option that is used in the GRUB boot loader. It is used to control the display mode during boot time, and it has the following effects:
+
+quiet: Suppresses most of the verbose messages that are displayed during the boot process, such as the system messages and boot messages. This makes the boot process less verbose and gives a cleaner boot experience.
+
+splash: Enables the display of a splash screen during the boot process, typically an image that represents the distribution logo. This can provide a more aesthetically pleasing boot experience, and is especially useful on systems that have slow boot times.
+
+By including quiet splash in the GRUB boot options, you can enjoy a quieter and more visually appealing boot process.
+
+
+
+
+Harsh reddy
+can quite splash work in centos 7
+Yes, quiet splash can work in CentOS 7 as well. It works in a similar way to Ubuntu, suppressing most of the boot messages and displaying a splash screen during the boot process.
+
+To use quiet splash in CentOS 7, follow the steps I mentioned in my previous answer to modify the GRUB_CMDLINE_LINUX line in the /etc/default/grub file, then regenerate the GRUB configuration.
+
+For example:
+
+makefile
+Copy code
+GRUB_CMDLINE_LINUX="quiet splash"
+Note that the specific implementation details for quiet splash may vary depending on the version of CentOS 7 you're using. Also, not all systems have a splash screen implemented, so the splash option may have no effect on some systems.
+
+
+
+
+Harsh reddy
+i have a vm in ESXI is that work in that systems
+Yes, quiet splash can work in a virtual machine (VM) running on ESXi as well, as long as the guest operating system supports the quiet splash option in its boot loader.
+
+To use quiet splash in a CentOS 7 VM running on ESXi, follow the same steps I mentioned in my previous answers to modify the GRUB_CMDLINE_LINUX line in the /etc/default/grub file and regenerate the GRUB configuration.
+
+Once you have made the changes, restart the VM and verify that the quiet splash option is in effect.
+
+Note that the specific implementation details for quiet splash may vary depending on the version of ESXi and the CentOS 7 VM you're using. Also, not all systems have a splash screen implemented, so the splash option may have no effect on some systems.
+
+
+
+
+Harsh reddy
+which version of ESXI it is supported
+The quiet splash option in the boot loader is supported by most modern versions of operating systems, including CentOS 7, and is not specific to any particular version of ESXi.
+
+Whether or not the quiet splash option is supported in a specific version of ESXi depends on the guest operating system that is running in the virtual machine. If the guest operating system supports the quiet splash option in its boot loader, it should work in the virtual machine regardless of which version of ESXi it is running on.
+
+It's important to note that ESXi itself does not have a boot loader, and the boot process of a virtual machine running on ESXi is controlled by the guest operating system's boot loader. So, if you want to use the quiet splash option in a virtual machine running on ESXi, you'll need to follow the steps for modifying the boot options in the guest operating system, as I described in my previous answers.
+
+
+
+Rege

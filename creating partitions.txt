@@ -1,0 +1,41 @@
+creating partitions::
+  fdisk /dev/sdb
+      m
+      n
+      p
+      1
+      Enter
+      +5G
+      n
+      p
+      2
+      Enter
+      +5G
+      n
+      p
+      3
+      Enter
+      +5G
+      P(displays the number of partitions)
+      wq  
+    partprobe /dev/sdb1
+    partprobe /dev/sdb2
+    partprobe /dev/sdb3
+  Create a file systems on partitions: 
+    mkfs.xfs /dev/sdb1
+    mkfs.xfs /dev/sdb2
+    mkfs.xfs /dev/sdb3
+  create drirectries for each and evry device
+    mkdir vive1 vive2 vive3
+    mount /dev/sdb1 vive1
+    mount /dev/sdb2 vive2
+    mount /dev/sdb3 vive3
+  enter below data into fstab:
+    /dev/sdb1    vive1     xfs   defaults  0  0 
+u
+
+    /dev/sdb2    vive2     xfs   defaults  0  0
+    /dev/sdb3    vive3     xfs   defaults  0  0
+    save and exist(Esc+(shift:)+wq!)
+  mount -a
+  df -hT

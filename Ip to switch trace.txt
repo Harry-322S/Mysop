@@ -1,0 +1,32 @@
+switch
+
+Port 1123
+
+Username: dcsupport
+PWD: dbF@wNuV
+
+INtzon L3 - 172.17.254.82
+
+DMZ L3 - 172.17.254.84
+
+
+First Login to L3
+
+display arp | in (ip)
+
+(Here mac id and Port)
+
+display interface brief 
+
+display lldp neighbour interface (interface name)
+
+Login to next switch
+
+display mac-address | include (mac)
+
+display interface brief 
+
+display lldp neighbour interface (interface name)
+
+Same Process until Server ip appear
+

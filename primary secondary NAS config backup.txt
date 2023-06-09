@@ -1,0 +1,12 @@
+in windows powershell run as administrator
+
+Get-NfsShare | Export-CliXml -Path c:\shares.xml
+
+Get-NfsShare | Get-NfsSharePermission | Export-CliXml -Path c:\SharePermissions.xml
+
+naspri
+
+nassec
+
+
+

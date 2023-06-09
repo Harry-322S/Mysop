@@ -1,0 +1,9 @@
+alt to get the shortcut letters on tab
+
+alt h v v
+
+alt + sum formula
+
+f4 it will lock the value
+
+ctrl 1 to format the cell

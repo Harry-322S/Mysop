@@ -1,0 +1,125 @@
+Harsh reddy
+ansible playbook for create a user in multiple servers
+Here is an example Ansible playbook that can be used to create a new user on multiple servers:
+
+Copy code
+---
+- name: Create new user
+  hosts: servers
+  gather_facts: yes
+  vars:
+    new_user: newuser
+    new_user_password: "newpassword"
+  tasks:
+  - name: Create new user
+    user:
+      name: "{{ new_user }}"
+      password: "{{ new_user_password | password_hash('sha512') }}"
+      state: present
+  - name: Add new user to sudo group
+    user:
+      name: "{{ new_user }}"
+      groups: sudo
+      append: yes
+This playbook creates a new user named "newuser" with the password "newpassword" and adds this user to the "sudo" group. This can be run on the Ansible control node by running the command:
+
+----------------------------------------------------------------------------------------------------------------
+Here's an example playbook for creating a user on multiple servers:
+
+yaml
+Copy code
+---
+- name: Create user playbook
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: Create user
+    user:
+      name: new_user
+      state: present
+
+  - name: Add user to sudo group
+    become: yes
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      line: "new_user ALL=(ALL) NOPASSWD: ALL"
+This playbook will create a new user new_user on all hosts defined in the hosts section, and add the user to the sudo group, allowing them to run commands with elevated privileges.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Harsh reddy
+play book for create user and password
+Here is an example playbook for creating a user and password in multiple servers:
+
+yaml
+Copy code
+- name: Create user
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: Create user
+    user:
+      name: newuser
+      password: $6$RANDOMSALT$ENCRYPTEDPASSWORD
+      state: present
+
+  vars:
+    ENCRYPTEDPASSWORD: "{{ 'password' | password_hash('sha512') }}"
+In this example, the become directive is set to yes to run the tasks with elevated privileges. The user module is used to create a user named "newuser" and set its password. The password is stored in a variable ENCRYPTEDPASSWORD that is encrypted using the SHA-512 algorithm. You can replace "password" with your desired password.
+-----------------------------------------------------------------------------------------------------------------------------------------
+Here's a sample playbook that creates a user with a shadow password hash in a group of servers:
+
+yaml
+Copy code
+---
+- name: Create user with shadow password
+  hosts: all
+  become: yes
+  vars:
+    username: newuser
+    password: mysecretpassword
+  tasks:
+  - name: create the user
+    user:
+      name: "{{ username }}"
+      password: "{{ password | password_hash('sha512') }}"
+      state: present
+      update_password: always
+In this playbook, the user newuser will be created on all servers in the hosts section. The password is passed as a variable and hashed using the sha512 hash algorithm using the password_hash filter. The update_password option is set to always to ensure the password is updated if the user already exists. The become option is used to run the task with elevated privileges (root).
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Harsh reddy
+how to generate from own vault
+To generate a password in Ansible using a vault, you can do the following steps:
+
+Create a vault file: Use the ansible-vault create command to create a new vault file, for example, vault_password.yml.
+
+Store the password: Store the password in the vault file, for example, vault_password.yml:
+
+password: "secretpassword"
+
+Encrypt the vault: Encrypt the vault file with ansible-vault encrypt command, for example:
+
+ansible-vault encrypt vault_password.yml
+
+Use the password in the playbook: In the playbook, you can use the password stored in the vault file by using the following code:
+yaml
+Copy code
+  vars_files:
+    - vault_password.yml
+
+  tasks:
+    - name: Create user
+      user:
+        name: newuser
+        password: "{{ password }}"
+        update_password: on_create
+        shell: /bin/bash
+Decrypt the vault: To decrypt the vault file, you can use the ansible-vault decrypt command.
+Note: Make sure to keep the vault file secured and only accessible by authorized personnel.
+
+

@@ -1,0 +1,4 @@
+vi checklist.sh
+copy ubuntu checklist
+chmod 777 checklist.sh
+./checklist.sh

@@ -1,0 +1,101 @@
+FTP::
+FTP: 
+    Downloads:Before starting the FTP Server we need to stop the two thing that is
+     Stop the SELINUX:
+                      Check the status: sestatus
+                      Disable the selinux:go to #vi /etc/selinux/config
+                                          make the disabled of SELNUX likie SELINUX=disabled
+                                          save & Exit(:wq!)
+                      Now check the status:sestatus(it gives the message like SELinux status:disabled)
+     Stop the iptables:
+                       check the status:service iptables status
+                       Stop the iptable status: service iptables stop
+                       Now check the status:Service iptables status(it give message like iptables: Firewall is not running)
+     Client(192.168.246.128)             Server(192.168.246.130)
+     -----------------------------       -----------------------------
+     1.rpm -qa vsftpd*                   1.rpm -qa vsftpd* (it gives vsftpd-2.2.2-11.el6_4.1.x86_64)
+     2.yum install ftp* /vsftpd* -y      2.yum install ftp* /vsftpd* -y(it gives below messages which means already installed)
+       Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+       This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.
+       Setting up Install Process
+       Package ftp-0.17-54.el6.x86_64 already installed and latest version
+       No package /vsftpd* available.
+       Nothing to do
+     3.Select or create some files to     3.Start the FTP Services
+       download from FTP Server(.130)       service vsftpd restart(R6)
+       cd /var/ftp/pub                      systemctl restart vsftpd(R7)
+       touch download{1..10}             
+     4.Start the FTP Services             4.After reboot make sure services are up
+       service vsftpd restart(R6)           chkconfig vsftpd on
+       systemctl restart vsftpd(R7)       5.connect to FTP client to download files
+     5.After reboot make sure services      ftp 192.168.246.128
+       are up                                 UserName:ftp
+       chkconfig vsftpd on                    Password: root password
+     6.Connect to FTP server to download      ftp>ls
+       files                                  ftp>cd pub
+                                              ftp>ls -lrt
+                                              ftp>get download1 (download the single file it will ask user user acceptance)
+                                              ftp>mget download2 download3 download3(It will ask user acceptance every file)
+                                              ftp>promt(Its disable the user acceptance permissions)
+                                              ftp>mget download*
+                                              ftp>quit
+                                          6.validate the download files on current location
+   Note:VSFTPD(Very Secure File Transfer Protocal daemon)
+        FTP(File Transfer Protocal)
+   Upload:
+     
+     client(192.168.246.128)              Server(198.168.246.130)
+     ------------------------------       -----------------------------------
+     1.rpm -qa vsftpd*                    1.rpm -qa vsftpd*
+     2.yum install ftp* /vsftpd* -y       2.yum intsall ftp* /vsftpd* -y
+     3.Enable(remove the comment #)       3.Enable(remove the comment(#)
+       anon_update_enable=yes               anon_update_enable=yes
+       Line number 27 in file
+       vi /etc/vsftpd/vsftpd.conf           vi /etc/vsftpd/vsftpd.conf
+          remove the comment(#) infront       remove the comment(#) infront of
+          anon_update_enable=yes              anon_update_enable=yes
+          save and exit(:wq!)                 save and exit(:wq!)
+     4.Start the FTP server               4.Start the FTP services
+       service vsftpd restart               service vsftpd restart
+     5.After reboot make sure services    5.After reboot make sure services 
+       are up                               are up
+       chkconfig vsftpd on                  chkconfig vsftpd on
+     6.Create directory to upload files   6.Select or create files to upload
+       cd /var/ftp/pub/                     in ftp client
+       mkdir upload                         touch upload{1..10}
+       chmod 777 upload                   7.Connect FTP client to upload files
+     7.Validate the files whether the       ftp 192.168.246.128
+       files are uploaded in to               username:ftp
+       upload folder                          password:root password
+       cd upload                            ftp>ls
+       ls -l(displays upload files)         ftp>ls
+                                            ftp>!ls(Its displays the current directory files(192.168.246.130)
+ 	                            ftp>cd pub
+                                            ftp>cd upload
+                                            ftp>put upload1
+                                            ftp>mput upload2 upload3 upload4
+                                            ftp>prompt(It will disable user interactive mode)
+                                            ftp>mput u*
+                                            ftp>quit(come out from 128)
+                                          8.Validate the files in FTP server
+                                            ls -l
+Step to step root user to run FTP Server:
+   upto now we are directly connected the FTP server through ftp as user
+   Now i want to connect the FTP Server through root.
+   step1:edit and modify the ftp configuration file
+         vi /etc/vsftpd/user_list
+            set the comment(#) before the root like #root
+            save and exit(:wq!)
+         vi /etc/vsftpd/ftpusers
+            set the comment(#) before the root like #root
+            save and exit(:wq!)
+   Step2:Restart the FTP Services
+         service vsftpd restart
+   step3:To upload or download files by root
+         ftp 192.168.246.128(Client server)
+          Name (192.168.246.128:root): root
+          Password:root password
+   step4:then do the upload or download the files process by using get/mget and put/mput
+
+How to deney perticular system use FTP server
+   step1:create 

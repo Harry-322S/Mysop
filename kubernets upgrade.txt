@@ -1,0 +1,66 @@
+kube-apiserver controller-manager kube-schedular  kubelet kube-proxy kubectl (similar version)
+
+Etcd cluster , Coredns have different versions
+
+
+kube-apiserver (promary componenet , No component should higher than this version except kubectl)
+(x)
+
+controller-manager kube-schedular     kubectl (x+1 , x , x-1)
+(x-1 or x)            (x-1 or x)
+
+kubelet kube-proxy
+(x-2,x-1,x)
+
+kubernets supports only upto 3 minor versions
+
+if it is 1.13 it will support 1.12 and 1.11 not 1.10
+
+Backup:
+
+Resource configuration
+
+kubectl get all --all-namespaces -o yaml > all-deploy-services.yaml
+
+velero tool
+
+Backup etcd
+
+ETCDCTL_API=3 etcdctl \
+ snapshot save snapshot.db
+ 
+ to restore stop kube-apiserver
+ 
+ service kube-apiserver stop
+ 
+ ETCDCTL_API=3 etcdctl \
+ snapshot restore snapshot.db \
+ --data-dir /var/lib/etcd-from-backup
+ 
+ systemctl daemon-reload
+service etcd restart
+
+we need to add below to use etcd commands
+
+ETCDCTL_API=3 etcdctl \
+ snapshot save snapshot.db \
+ --endpoints=        \
+ --cacert=/etc/etcd/ca.cert \
+ --cert=/etc/etcd/etcd-server.cert \
+ --key=/etc/etcd/etcd-server.key
+
+
+
+
+
+The upgrade workflow at high level is the following:
+
+
+Upgrade a primary control plane node.
+Upgrade additional control plane nodes.
+Upgrade worker nodes.
+
+kubeadm version
+
+
+

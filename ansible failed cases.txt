@@ -1,0 +1,31 @@
+fatal: [10.100.112.247]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.100.112.247 port 2525: Connection timed out", "unreachable": true}
+10.100.112.247 has ip tables
+fatal: [10.100.112.248]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 10.100.112.248 port 2525: Connection timed out", "unreachable": true}
+10.100.112.248 has ip tables
+10.100.111.106 ( resolved )
+10.100.104.124 ( not pinging)
+fatal: [10.100.104.43]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Unable to negotiate with 10.100.104.43 port 22: no matching key exchange method found. Their offer: diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1", "unreachable": true
+10.100.104.43 has diffiehellman error need to check
+10.100.104.75 gatway is 10.100.104.1 need to change gatway and check
+10.100.111.43 diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
+10.100.104.166 (resolved)
+10.100.111.94 need to check the port need credentials
+10.100.111.142 not pinging
+10.100.112.170 (resolved)
+10.100.111.249 (resolved)
+------------------------------------------226---------------------------------------------------
+10.100.112.134 (resolved)
+10.100.111.190 (resolved)
+10.100.111.197 (resolved)
+10.100.112.167 (resolved)
+10.100.112.129 (resolved)
+10.100.112.130 (resolved)
+10.100.104.61  (resolved)
+10.100.104.63  (resolved)
+10.100.104.73  (resolved)
+10.100.104.87  (resolved)
+10.100.104.85  (resolved)
+10.100.104.81  (resolved)
+10.100.104.205 (resolved)
+10.100.104.89  (resolved)
+--------------------------------------------------------------------------------------------------

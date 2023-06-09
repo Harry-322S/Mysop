@@ -1,0 +1,50 @@
+Create LVM::
+  Fineout the hosts:
+      ls /sys/class/scsi_host/(It will displays the hosts in server(host0,host1,host2)
+  Scan the hosts:
+      echo "- - -" > /sys/class/scsi_host/host0/scan
+      echo "- - -" > /sys/class/scsi_host/host1/scan
+      echo "- - -" > /sys/class/scsi_host/host2/scan
+	  
+	  or 
+	  
+	  ls /sys/class/scsi_host/ | while read host ; do echo "- - -" > /sys/class/scsi_host/$host/scan ; done (ubuntu)
+	  
+  Find the disk sizes:
+      fdisk -l
+  Find longlist of add hard disk:
+      ls -lrt /dev/sdc 
+          brw-rw----. 1 root disk 8, 32 Jan  4 21:21 /dev/sdc(hear b stands for blocked file)
+  Id change::
+  normal id:83
+  (press) t : to change the id
+  chage id : 8e
+  w : save and come out
+  Create PV(Physical volume):
+      pvcreate /dev/sdc
+  Create VG(Volume group):
+      vgcreate VG01 /dev/sdc (hear VG01 is Volume group name)
+      vgs/vgdisplay(Its give complete information about vg)
+  Create LV(Logical volume):
+      lvcreate -L 10G -n Lv01 VG01(Hear Lv01 is logical volume name)
+      lvs(Lv01 VG01 -wi-a----- 10.00g)
+      lvdisplay(Its give complete information about lv)
+  Create file system:
+      mkfs.ext4 /dev/VG01/Lv01
+  Create directory:
+      mkdir Lvm
+  Mount the file system to directory:
+      mount /dev/VG01/Lv01 Lvm
+  Check the mount status:
+      df -h(It exclude type)
+      df -hT(It incudes type field)
+  Add the LVM into fstab file:
+      vi /etc/fstab
+      Enter the below content:
+        and remove the unwanted data in fstab and enter the lvm entries
+        /dev/VG01/Lv01   Lvm    ext4  defaults  0 0
+        Save and exit(:wq!)
+      what are the changes we done fstab we have mount then only it will show changed data
+  Mount the all the file systems:
+      mount -a
+      df -hT(It display the changed the data)

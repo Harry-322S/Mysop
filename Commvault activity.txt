@@ -1,0 +1,36 @@
+--------------------------------- Instance001 ---------------------------------
+[ General ]
+ Version = 11 SP17.14
+ CommServe = commserve164
+ Home Directory = /opt/commvault/Base
+ Log Directory = /var/log/commvault/Log_Files
+ Core Directory = /opt/commvault
+ Temp Directory = /opt/commvault/Base/Temp
+ Platform Type = 6
+ Cvd Port Number = 8400
+[ Package ]
+ 1002/CVGxBase 11(BUILD80) = File System Core
+ 1101/CVGxIDA  = File System
+ 1301/CVGxMA  = MediaAgent
+[ Physical Machine/Cluster Groups ]
+ Display Name = Mediaagent_HYD
+  - Client Hostname = mediaagent.actcorp.in
+  - Job Results Directory = /opt/commvault/iDataAgent/jobResults
+  - Index Cache Directory = /opt/commvault/MediaAgent64/IndexCache
+
+to check status
+
+simpana status
+
+to install
+
+cvpkgadd
+
+to remove totally
+
+ cvpkgrm     -- if this command not works follow below steps
+
+rm -rf /etc/CommVaultRegistry
+rm -rf /opt/commvault     
+rm -rf /tmp/.gxset*   
+rm -rf /var/log/commvault/*

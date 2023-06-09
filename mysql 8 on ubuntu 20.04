@@ -1,0 +1,16 @@
+installing mysql 8 in ubuntu 20.04 minimal version.
+
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.20-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.20-1_all.deb
+On Ubuntu 22.04, choose MySQL ubuntu focal if there warned detected OS is not supported.
+The next prompt shows MySQL 8.0 chosen by default. Choose the first option and click OK
+The next prompt selects MySQL8 by default. Choose the last option Ok and click OK.
+sudo apt update
+sudo apt-cache policy mysql-server
+sudo apt install mysql-client mysql-community-server mysql-server
+Set a strong password for root MySQL user
+Confirm root password by typing it again.
+Set default authentication plugin. Use Strong Password Encryption mechanism.
+sudo mysql_secure_installation
+$ mysql -u root -p
+mysql> SELECT VERSION();

@@ -1,0 +1,37 @@
+ sent Today at 12:30 PM
+Server Step below:-
+In server 10.100.104.113
+
+#mkdir /home/cron_schedule_backup
+#mkdir /home/dir_structure_backup
+#mkdir /home/passwd_file_backup
+
+mkdir /secbackup/FtpDirUserCronBckup
+mkdir /FtpDirUserCronBckup_104.113
+
+
+IN server 10.100.104.113
+########### Below jobs for creating backups #######
+10 2 */7 * *  gzip </etc/passwd >/home/passwd_file_backup/passwd_$(date -I).gz    #(Schedule for backup the passwd file every 7 days)#
+12 2 */7 * *  find /home/ -type d > /home/dir_structure_backup/dir_stu_home_$(date -I).txt    #(Schedule for backup the directory structure of mounted directory in the server every 7 days)#
+14 2 */7 * * /usr/bin/crontab -l > /home/cron_schedule_backup/cronbkp_$(date -I).txt #(Scheduling for backup of cronjobs runs Every 7 days)#
+
+####### Below jobs for removing the backups for 90 days ######
+
+16 2 /7 * *  find /home/Cron_schedule_backup/cronbkp -type f -name ".txt" -mtime +90 -exec rm -rf {} \;    #(Removing the backup of cronjob file older than 90 days)#
+18 2 /7 * *  find /home/dir_structure_backup/dir_stu_home -type f -name ".txt" -mtime +90 -exec rm -rf {} \;   #(Removing the backup of directory structure file older than 90 days)#
+20 2 /7 * *  find /home/passwd_file_backup/passwd -type f -name ".gz" -mtime +90 -exec rm -rf {} \;       #(Removing the backup of passwd file older than 90 days)#
+
+#mkdir /secbackup/FtpDirUserCronBckup/FtpDirUserCronBckup_104.113
+
+########## Below jobs for creating backups #######
+22 2 */7 * *  gzip </etc/passwd >/secbackup/FtpDirUserCronBckup/FtpDirUserCronBckup_104.113/passwd_$(date -I).gz    #(Schedule for backup the passwd file every 7 days)#
+24 2 */7 * *  find /home/ -type d > /secbackup/FtpDirUserCronBckup/FtpDirUserCronBckup_104.113/dir_stu_home_$(date -I).txt    #(Schedule for backup the directory structure of mounted directory in the server every 7 days)#
+26 2 */7 * * /usr/bin/crontab -l > /secbackup/FtpDirUserCronBckup/FtpDirUserCronBckup_104.113/cronbkp_$(date -I).txt #(Scheduling for backup of cronjobs runs Every 7 days)#
+
+####### Below jobs for removing the backups for 365 days ######
+
+28 2 */7 * *  find /secbackup/FtpDirUserCronBckup/FtpDirUserCronBckup_104.113/cronbkp -type f -name ".txt" -mtime +365 -exec rm -rf {} \;    #(Removing the backup of cronjob file older than 365 days)#
+30 2 */7 * *  find /secbackup/FtpDirUserCronBckup/FtpDirUserCronBckup_104.113/dir_stu_home -type f -name ".txt" -mtime +365 -exec rm -rf {} \;   #(Removing the backup of directory structure file older than 365 days)#
+32 2 */7 * *  find /secbackup/FtpDirUserCronBckup/FtpDirUserCronBckup_104.113/passwd -type f -name ".gz" -mtime +365 -exec rm -rf {} \;       #(Removing the backup of passwd file older than 365 days)#
+

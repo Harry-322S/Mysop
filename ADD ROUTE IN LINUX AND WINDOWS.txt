@@ -1,0 +1,20 @@
+To add a route in windows:
+
+Type route add 0.0.0.0 mask 0.0.0.0 <gateway>, where <gateway> is the gateway address listed for network destination 0.0.0.0 in Activity 1.
+ For example, if the gateway was 192.168.1.1, you would type 
+ "route -p add 0.0.0.0 mask 0.0.0.0 192.168.1.1." 
+-p = persistant
+
+To add a route in Linux
+$ ip route add <network_ip>/<cidr> via <gateway_ip>
+
+# Example
+$ ip route add 10.0.3.0/24 via 10.0.3.1
+
+Persistent in centos:  172.16.5.0/24 via 10.0.0.101 dev eth0
+
+centos 
+example
+route add 172.16.32.94 gw 10.100.104.252
+
+

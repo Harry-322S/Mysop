@@ -1,0 +1,6 @@
+export HISTCONTROL=ignorespace
+
+after that give the space and type that will not store in history
+
+
+to delete from history history -d <number>

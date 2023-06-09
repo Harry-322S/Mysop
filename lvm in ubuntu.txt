@@ -1,0 +1,12 @@
+pvcreate /dev/sda4 or /dev/sdb-- this second disk
+pvresize /dev/sda4 or /dev/sdb-- this second disk
+vgextend vg0 /dev/sda4
+lvextend /dev/vg0/lv-5 /dev/sda4
+resize2fs /dev/mapper/vg0-lv--5
+
+
+ls /sys/class/scsi_host/ | while read host ; do echo "- - -" > /sys/class/scsi_host/$host/scan ; done
+
+
+
+lvextend /dev/cl_ebsmeweb-112-191/var /dev/sd

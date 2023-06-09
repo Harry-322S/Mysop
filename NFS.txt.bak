@@ -1,0 +1,45 @@
+NFS:
+    Before perform the NFS we have to stop the services SELINUX and IPTABLES
+    Stop the SELINUX:
+                      Check the status: sestatus
+                      Disable the selinux:go to #vi /etc/selinux/config
+                                          make the disabled of SELNUX likie SELINUX=disabled
+                                          save & Exit(:wq!)
+                      Now check the status:sestatus(it gives the message like SELinux status:disabled)
+     Stop the iptables:
+                       check the status:service iptables status
+                       Stop the iptable status: service iptables stop
+                       Now check the status:Service iptables status(it give message like iptables: Firewall is not running)
+    NFS Client(192.168.246.128)              NFS Server(192.168.246.130)
+    ------------------------------           ------------------------------
+    1.Install the NFS package                1.Check and install the package for NFS        
+      #rpm -q nfs-utils                        #rpm -q nfs-utils
+      #yum install nfs-utils* -y               #yum install nfs-utils* -y
+    2.Create directory or create a           2.Check and start the NFS services
+      partition and mount it and make          #service nfs restart
+      a mount point and add data to it       3.Check which directory is exported for this machine
+      #fdisk /dev/sdc  create a partition      #showmount -e 192.168.246.128
+       /dev/sdc1 3980 4056 618471 83 Linux   4.Make a directoryand mount NFS over it
+      #partprobe /dev/sdc1                     #mkdir /ktnfs
+
+       #mkfs.ext4 /dev/sdc1                     #mount -t nfs 192.168.246.128:/ktdir /ktnfs
+      #mkdir /ktdir                            #cd /ktnfs/
+      #vim /etc/fstab                          #ls(It shows files which exist in /ktdir)
+       /dev/sdc1 /ktdir ext4 defaults 0 0    5.now again move back to client machine and try uploading files
+      #mount /dev/sdc1 /ktdir
+      #cd /ktdir
+      #touch ktfile{1..5}
+      #ls
+    3.Export the directory by editing /etc/exports
+      #vim /etc/exports
+       /ktdir 192.168.246.130(rw,sync)
+       Save and exit(:wq!)
+      #cd ..
+      #exportfs -avr
+    4.Restart the services and make it permanent
+      #service nfs restart
+      #cat /var/lib/nfs/etab
+	  
+	  
+	  mount 10.100.109.135:/104-113FTP /secbackup/
+	  

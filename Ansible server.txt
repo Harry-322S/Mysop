@@ -1,0 +1,37 @@
+Ansible Server:
+
+10.100.111.142
+
+User:harsha    Password:act@369$
+
+cd /root/new --   ALL ROUTES USERS BACKUP LOCATION
+
+cd ~      cron.sh ------> script
+          succes -------> server host group
+		  
+		  to get backup of new server Add the server in Succes Host group
+	
+to implement checklist::
+
+cd /etc/ansible
+
+vi hosts -----> add the server under Linuxs group
+
+ ansible-playbook check.yml
+
+in the check.yml select the checklist to be implimented whether cent-os or ubuntu 
+
+10.100.112.220
+10.100.112.221
+
+
+
+
+standalone : 59  - 11 closed
+it : 275
+tech : 138
+sun :25
+
+
+Total : 497
+closed : 248

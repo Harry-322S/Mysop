@@ -1,0 +1,20 @@
+go 1.16 installation
+
+wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+
+sudo tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
+
+export PATH=$PATH:/usr/local/go/bin
+ 
+source ~/.bashrc
+ 
+ go version
+ 
+ # Clone outside of GOPATH
+git clone https://github.com/derailed/popeye
+cd popeye
+# Build and install
+go install
+# Run
+popeye
+

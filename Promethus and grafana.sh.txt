@@ -1,0 +1,62 @@
+Promethus
+
+
+http://172.23.24.86:9090/graph
+
+
+Grafana
+
+
+http://172.23.24.87:3000/?orgId=1
+
+
+User: admin
+Password: admin
+
+
+installation:
+
+https://linuxhint.com/install-configure-prometheus-alert-manager-ubuntu/
+
+
+systemctl daemon-reload       to take effect the changes we made.
+
+Grafana - 172.23.24.87 
+Prometheus - 172.23.24.86 
+
+user:dcsupport (sudo) 
+Password: $0nyDCm@x1 
+Port- 2233
+
+Promethus installation steps:::
+
+verify server is having internet,if not download the file manually.(you can downlaod it by pasting below url)
+
+#wget https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz
+#tar -xvf node_exporter-1.2.2.linux-amd64.tar.gz
+#mv node_exporter-1.2.2.linux-amd64/node_exporter /usr/local/bin/
+#useradd -rs /bin/false node_exporter
+#vi /etc/systemd/system/node_exporter.service  --->if its throwing any error,you have to create directory manually.
+
+Paste below conntent:
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+
+
+#systemctl daemon-reload
+#systemctl start node_exporter
+#systemctl status node_exporter
+#systemctl enable node_exporter
+
+you have to check status and confirm,if its activated or not.
+#systemctl status node_exporter

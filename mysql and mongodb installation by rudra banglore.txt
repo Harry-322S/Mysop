@@ -1,0 +1,28 @@
+Steps :(for 172.23.26.116 and 118 servers)
+
+1.       wget https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb
+2.       dpkg -i mysql-apt-config_0.8.12-1_all.deb
+in the next prompt select ubuntu bionic and then select mysql server and cluster option and choose the mysql version 5.7 and select ok
+3.       apt update
+4.       apt-cache policy mysql-server(check the mysql package)
+5.       apt install -f mysql-client=5.7* mysql-community-server=5.7* mysql-server=5.7*
+now start the server service using 
+6.       systemctl start mysql
+
+Steps;(for 172.23.26.117)
+
+1.       apt update
+2.       apt install gnupg
+3.       wget -qO - https://www.mongodb.org/static/pgp/server-3.2.asc | sudo apt-key add -
+         echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+5.       apt update
+
+6.       apt install mongodb-org
+
+7.       systemctl start mongod.service
+
+8.       systemctl enable mongod
+
+9.       mongo --eval 'db.runCommand({ connectionStatus: 1 })'
+

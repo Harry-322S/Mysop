@@ -1,0 +1,91 @@
+Please take OS backup for below ldoms. Share the backup of all these ldoms.
+
+•	netstat -nr 
+•	df -h 
+•	ifconfig -a 
+•	echo | format 
+•	zpool status 
+•	zpool status -xv 
+•	zpool list 
+•	history 
+•	svcs -a 
+•	ntpq -p 
+•	Backup of /etc/resolve.conf and /etc/hosts files 
+
+
+
+BOX1
+Siebel DB RAC 1	172.23.26.201
+OBRM APP1	192.168.200.151
+OSM App 1	192.168.200.161
+ESB App 1	192.168.200.155
+BOX2
+Siebel DB RAC 2	172.23.26.210
+OBRM APP2	192.168.200.152
+OSM App 2	192.168.200.162
+ESB App 2	192.168.200.156
+BOX3
+Siebel Obj Mgr 3	172.23.24.204
+Siebel EAI Mgr 3	172.23.24.207
+OBRM DB RAC 1	172.23.26.205
+ESB/OSM DB RAC 1 (osm db1)	172.23.26.220
+BOX4
+Siebel Web 1	192.168.200.158
+Siebel Obj Mgr 1	172.23.24.202
+Siebel EAI Mgr 1	172.23.24.205
+Siebel G/W (P)*	172.23.24.209
+ESB/OSM DB RAC 2 (osm db2)	172.23.26.230
+BOX5
+Siebel Web 2	192.168.200.159
+Siebel G/W (A)*	172.23.24.208
+Siebel Obj Mgr 2	172.23.24.203
+Siebel EAI Mgr 2	172.23.24.206
+OBRM DB RAC 2	172.23.26.215
+BOX6
+ESBApp3	192.168.200.170
+ESB/OSM  DG (ESB db)	172.23.26.242
+ETL Reporting Server	172.23.26.243
+BRM_Prod_APP3	192.168.200.251
+
+
+Take below backups for control domain:
+
+•     netstat -nr 
+•     df -h
+•     netstat -nr
+•     df -h
+•     ifconfig -a
+•     echo | format
+•     zpool status
+•     zpool status -xv
+•     zpool list
+•     history
+•     svcs -a
+•     ntpq -p
+•     ldm add-spconfig May2023
+•     Backup of /etc/resolve.conf and /etc/hosts files
+•     ldm list-constraints -x >file_name_date.xml 
+
+Download the above xml file.
+
+•     ldm list
+
+Above command will show all the ldoms name.
+Then run below command for all the ldoms by changing the ldom name.
+
+•     ldm list-constraints -x ldom_name >ldom_name.xml
+
+Then download all the xml files.
+
+BOX1
+Control 	192.168.169.57
+BOX2
+Control 	192.168.169.62
+BOX3
+Control 	192.168.169.67
+BOX4
+Control 	192.168.169.72
+BOX5
+Control 	192.168.169.78
+BOX6
+Control 	192.168.169.84

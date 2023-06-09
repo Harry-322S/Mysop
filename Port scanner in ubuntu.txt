@@ -1,0 +1,107 @@
+what is port scanners tools in ubuntu
+A port scanner is a tool used to identify open ports and services running on a networked device, such as a computer or a server. In Ubuntu, there are several tools that you can use to perform port scanning:
+
+Nmap: Nmap is a popular open-source network exploration and security auditing tool. It can be used to scan for open ports, detect operating systems and services, and identify vulnerabilities.
+
+Superscan: Superscan is a free and powerful port scanner for Windows, but it can also be used in Ubuntu through Wine.
+
+Zenmap: Zenmap is a GUI front-end for Nmap that provides a user-friendly interface for performing network scans.
+
+Masscan: Masscan is a fast port scanner that can scan large IP ranges in a short amount of time.
+
+To install these tools in Ubuntu, you can use the apt-get command. For example, to install Nmap, you would run the following command in Terminal:
+
+csharp
+Copy code
+sudo apt-get install nmap
+Note: The sudo command is used to run the command with elevated privileges and is required on Linux.
+
+
+
+
+Harsh reddy
+after installation how can we use nmap
+Once you have installed Nmap on your Ubuntu system, you can use it to scan for open ports and services. Here's how:
+
+Open Terminal
+Type nmap followed by the target IP address or hostname and press Enter. For example:
+Copy code
+nmap example.com
+or
+
+Copy code
+nmap 192.168.1.1
+Nmap will start scanning the target and display the results, including the open ports and the services running on those ports.
+Here are some common options you can use with Nmap:
+
+-p followed by a port number or range to scan specific ports
+-sS to perform a stealth SYN scan
+-sU to perform a UDP scan
+-sV to attempt version detection of services running on the target
+-O to attempt to determine the operating system of the target
+For example, to perform a stealth SYN scan and version detection of services running on example.com, you would run the following command:
+
+Copy code
+nmap -sS -sV example.com
+Note: Running Nmap scans on a network or device that you do not own may be illegal and is not recommended. Make sure to only scan systems for which you have permission.
+
+
+
+
+Harsh reddy
+-sS to perform a stealth SYN scan
+Yes, the -sS option in Nmap is used to perform a SYN scan, also known as a stealth scan. The SYN scan is a type of scan that is designed to be stealthy and less detectable by firewalls and intrusion detection systems. It works by sending a SYN packet to the target port, and then watching for a response. If the target port is open, it will respond with a SYN-ACK, indicating that the port is open. If the target port is closed, it will respond with a RST, indicating that the port is closed.
+
+Using the -sS option with Nmap is a good option for reconnaissance and information gathering, as it is less likely to be detected by network security systems. However, it's worth noting that modern firewalls and intrusion detection systems are becoming increasingly sophisticated, and can often detect and block SYN scans.
+
+Here's an example of using the -sS option in Nmap to perform a SYN scan:
+
+Copy code
+nmap -sS example.com
+This will perform a stealth SYN scan of the target host example.com.
+
+how to install masscan and use
+To install Masscan on Ubuntu, you can use the following steps:
+
+Open Terminal
+Install the required dependencies by running the following command:
+csharp
+Copy code
+sudo apt-get install build-essential libpcap-dev
+Download the latest version of Masscan from the official website by running the following command:
+ruby
+Copy code
+wget https://github.com/robertdavidgraham/masscan/archive/master.zip
+Unzip the downloaded file:
+python
+Copy code
+unzip master.zip
+Change to the Masscan directory:
+bash
+Copy code
+cd masscan-master/
+Compile Masscan by running the following command:
+go
+Copy code
+make
+Install Masscan by running the following command:
+go
+Copy code
+sudo make install
+Once Masscan is installed, you can use it to perform a port scan by running the following command:
+
+css
+Copy code
+masscan [options] <target>
+Here are some common options you can use with Masscan:
+
+-p followed by a port number or range to scan specific ports
+--rate followed by a number to set the rate of packets sent per second
+-e followed by an interface name to specify the network interface to use
+-oL followed by a filename to write the output to a file
+For example, to perform a scan of the target example.com for open ports in the range of 1-1000, you would run the following command:
+
+Copy code
+masscan -p1-1000 example.com
+Note: Running Masscan scans on a network or device that you do not own may be illegal and is not recommended. Make sure to only scan systems for which you have permission.
+

@@ -1,0 +1,23 @@
+converting file systems::
+Convert ext2 to ext3 file system:
+  Consider the file system:/dev/sdb1  vive1  ext2  defaults 0 0
+  need to convert(/dev/sdb1)
+  umount vive1 (hear vive1 is directory)
+  tune2fs -j /dev/sdb1
+  we have to change the ext2 to wxt3 in fstab for the /dev/sdb1 like below
+   /dev/sdb1    vive1     ext3   defaults  0  0.
+  mount /dev/sdb1 vive1
+  df -hT (It show type as ext3 for /dev/sdb1)
+
+Convert ext3 to ext4 file system:
+  Consider the file system:/dev/sdb2  vive1  ext3  defaults 0 0
+  need to convert(/dev/sdb2)
+  umount vive2c
+  tune2fs -O extents,uninit_bg,dir_index /dev/sdb2
+  e2fsck -f /dev/sdb2
+    press enter'y'
+  we have to change the ext3 to wxt4 in fstab for the /dev/sdb2 
+    /dev/sdb2    vive2     ext4   defaults  0  0
+  mount /dev/sdb2 vive2
+  df -hT
+Convert ext4 to xfs file system:(We can perform the conversion only in RHEL7)

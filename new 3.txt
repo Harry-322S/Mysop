@@ -1,0 +1,18 @@
+
+/etc/kubernetes/manifests/keepalived.yaml
+​
+    
+/etc/kubernetes/manifests/haproxy.yaml
+
+
+kubeadm init --control-plane-endpoint="172.16.16.100:6443" --upload-certs --apiserver-advertise-address=172.16.16.101 --pod-network-cidr=192.168.0.0/16
+
+Please Share SOP Document for settingup cluster including customisations
+How the cluster is initialised in selfcare production setup ??
+How can we change the pod network in future ?
+How to decide the --apiserver-advertise-address control-plane-endpoint 
+How to check what is the kubernetes cluster ssl validity ?
+What is the maximum Period kubernets cluster will run without issue with out upgrading the version ?
+which services are installed for networking and networking Policy (for example flannel is for networking and calico is for networking Policy , is it same or different in our setup)??
+How to add one more user to run cluster related command ?
+Any Specific Configurations for settingup multiple masters in cluster?

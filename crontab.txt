@@ -1,0 +1,131 @@
+Linux Crontab Format
+
+MIN HOUR DOM MON DOW CMD
+Crontab Fields and Allowed Ranges (Linux Crontab Syntax)
+
+Field    Description    Allowed Value
+MIN      Minute field    0 to 59
+HOUR     Hour field      0 to 23
+DOM      Day of Month    1-31
+MON      Month field     1-12
+DOW      Day Of Week     0-6
+CMD      Command         Any command to be executed.
+1. Scheduling a Job For a Specific Time
+
+The basic usage of cron is to execute a job in a specific time as shown below. 
+This will execute the Full backup shell script (full-backup) on 10th June 08:30 AM.
+
+The time field uses 24 hours format. So, for 8 AM use 8, and for 8 PM use 20.
+
+30 08 10 06 * /home/maverick/full-backup
+30 – 30th Minute
+08 – 08 AM
+10 – 10th Day
+06 – 6th Month (June)
+* – Every day of the week
+.To view the Crontab entries
+
+View Current Logged-In User’s Crontab entries : To view your crontab entries type * crontab -l from your unix account.
+crontab -e :: to edit cron tab
+crontab -u (username) -l :: to see the list of jobs scheduled by that user
+@yearly  : to scheduled yearly
+@monthly  : to schedule monthly
+@daily  : to schedule daily
+EXAMPLE:
+3. 0 10 * * * php /var/www/html/ebautomailer.php >> /var/www/html/ebautomailer.php_log >> /var/www/html/ebautomailer.php_err
+
+For every minute :: * * * * *
+For every hour :: 0 * * * *
+For every 10 miutes :: */10 * * * *                                       
+For every 2 hours  :: 0 */2 * * * 
+For every day 9 AM :: 0 9 * * * 
+
+Tb0D6#01iR1s
+
+
+*/10 * * * * php /appdata/scrips/gifting/diw_gifting.php >> /appdata/scrips/gifting/diw_gifting.php_log >> /appdata/scrips/gifting/diw_gifting.php_err
+
+
+Var/www/html/siebel_live_crons/create_vas_order_uat.php
+
+0 9 * * 1  php /var/www/html/rajiya/salesmarket_datareport_ytd.php >> /var/www/html/rajiya/salesmarket_datareport_ytd.php_log >> /var/www/html/rajiya/salesmarket_datareport_ytd.php_err
+
+/var/www/html/automations_usha/welcomeback_campaign_tabassum.php
+
+/var/www/html/upgrade_report.php
+
+
+/home/usha_engg/guru/mailers-continuous/loaddata.php
+
+0 9 * * * php /var/www/html/rajiya/aha_upgrade_report.php >> /var/www/html/rajiya/aha_upgrade_report.php_log >> /var/www/html/rajiya/aha_upgrade_report.php_err
+
+###Aditya Teja Crons########
+
+0 8 * * * php /var/www/html/rajiya/coupon_notused_details_delhi.php >> /var/www/html/rajiya/coupon_notused_details_delhi.php_log >> //var/www/html/rajiya/coupon_notused_details_delhi.php_err
+
+0 8 * * * php /var/www/html/prod/aha_prod/vas_upg_dwng_insertion.php >> /var/www/html/prod/aha_prod/vas_upg_dwng_insertion.php_log >> /var/www/html/prod/aha_prod/vas_upg_dwng_insertion.php_err
+
+15 8 * * * php /var/www/html/prod/aha_prod/activation.php >> /var/www/html/prod/aha_prod/activation.php_log >> /var/www/html/prod/aha_prod/activation.php_err
+
+30-45 8 * * * sh /root/every-5-seconds_renewal.sh
+
+45-59 8 * * * sh /root/every-5-seconds_deactivation.sh
+
+
+$ cat every-5-seconds_renewal.sh
+#!/bin/bash
+while true
+do
+ /var/www/html/prod/aha_prod/renewal.php >> /var/www/html/prod/aha_prod/renewal.php_log >> /var/www/html/prod/aha_prod/renewal.php_err
+ sleep 5
+done
+
+ cat every-5-seconds_deactivation.sh
+#!/bin/bash
+while true
+do
+ php /var/www/html/prod/aha_prod/deactivation.php >> /var/www/html/prod/aha_prod/deactivation.php_log >> /var/www/html/prod/aha_prod/deactivation.php_err
+ sleep 5
+done
+
+
+0 8 28 * * php /var/www/html/rajiya/gst_details.php >> /var/www/html/rajiya/gst_details.php_log >> /var/www/html/rajiya/gst_details.php_err
+
+
+
+/var/www/html/rajiya/gst_details.php
+
+
+Aditya 
+
+0 9 * * * php /var/www/html/netflixbundleintegration/final_prod/isp_insertion.php >> /var/www/html/netflixbundleintegration/final_prod/cron_logs >> /var/www/html/netflixbundleintegration/final_prod/isp_insertion.php_err
+
+0 9 * * * php /var/www/html/netflixbundleintegration/final_prod/vas_activation_deactivation.php >> /var/www/html/netflixbundleintegration/final_prod/cron_logs >> /var/www/html/netflixbundleintegration/final_prod/vas_activation_deactivation.php_err
+
+totally disable crontab
+
+If you want to disable the entire crontab system in CentOS 7, you can stop the crond service that runs cron jobs. Here are the steps:
+
+Open a terminal or SSH session.
+
+Type the following command to stop the crond service:
+
+
+sudo systemctl stop crond.service
+This will stop the cron service immediately.
+
+If you want to disable the cron service from starting automatically at boot time, you can disable the crond service by running the following command:
+
+
+sudo systemctl disable crond.service
+This will prevent the cron service from starting automatically when the system boots up.
+
+Verify that the cron service is stopped and disabled by running the following command:
+
+
+sudo systemctl status crond.service
+
+This will display the current status of the crond service.
+
+That's it! The cron service is now disabled and will no longer run any cron 
+

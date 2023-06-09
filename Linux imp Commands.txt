@@ -1,0 +1,33 @@
+
+
+chattr +i (foldername)
+
+We can not delete that folder even with root user
+
+chattr -i (foldername)
+
+We can delete after executing above command
+
+/etc/login.defs
+
+
+rpm -qf (folder name)
+     -qPR to know dependecies
+	 
+To search which rpm is responsible
+ 
+ sticky bit
+ 
+ nmap need to install to check ports in remote server.
+ 
+ nmap -A (ip Address)
+ 
+ 500 database is not responding
+ 
+ sar 
+ 
+ sysstat
+ /etc/sysconfig
+ 
+ initrd image
+  rsync , sed , grep , lsof , awk 

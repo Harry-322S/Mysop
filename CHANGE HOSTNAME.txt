@@ -1,0 +1,8 @@
+How to see the file size in user understandable format?
+  ls -lh
+How to change the hostname(system name)
+  Hostname
+  vi /etc/sysconfig/network
+   change as Vivek like HOSTNAME=Vivek
+  /etc/init.d/network restart
+  init 6

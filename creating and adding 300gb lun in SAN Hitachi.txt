@@ -1,0 +1,23 @@
+2).Create the luns as mentioned below on Hitachi SAN.    1) 300GB*1 = 300GB 							
+3)Than  add these luns to CRMBOX3 hostgroup  IP control domain 192.168.169.67  and mapping to LDOM OBRMDB RAC1 172.23.26.205
+Than  add these luns to CRMBOX5 hostgroup  IP control domain 192.168.169.78  and mapping to LDOM OBRMDB RAC2 172.23.26.215							
+4)Than Login to control domain  and follow the steps mentions below do a scan of disks							
+5) format the disk and label it							
+6 ) Add the disk to control domain and also to ldom (as per ldm list)							
+							
+Scanning command below:-
+In BOX5 							
+1.echo | format see new raw disks added							
+2.cfgadm –al –o show_FCP_dev  for scanning disks							
+3.format WWN NO							
+4. ldm add-vdsdev /dev/rdsk/WWN NO NAME@primary-vds0(Name on CD side)							
+5. ldm add-vdisk NAME  NAME@primary-vds0 PRODBRMDB2 (as per ldm list Name on Ldom side)							
+6. ldm list-constraints primary | grep NAME							
+7. ldm list-constraints PRODBRMDB2 | grep NAME							
+ 
+IN BOX3
+4. ldm add-vdsdev /dev/rdsk/WWN NO NAME@primary-vds0(Name on CD side)
+5. ldm add-vdisk NAME  NAME@primary-vds0 PRODBRMDB1 (as per ldm list Name on Ldom side)
+6. ldm list-constraints primary | grep NAME	 
+7. ldm list-constraints PRODBRMDB1| grep NAME	 
+ 

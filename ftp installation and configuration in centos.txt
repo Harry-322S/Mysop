@@ -1,0 +1,98 @@
+To install the FTP server in CentOS, you can follow these steps:
+
+Open a terminal window on your CentOS server.
+
+Install the FTP server package by running the following command:
+
+
+sudo yum install vsftpd
+
+Once the installation is complete, start the FTP server service by running the following command:
+
+
+sudo systemctl start vsftpd
+
+
+You can check if the FTP service is running by running the following command:
+
+sudo systemctl status vsftpd
+
+If the service is running, you should see the message "Active (running)" in the output.
+
+To enable the FTP service to start automatically at boot time, run the following command:
+
+
+sudo systemctl enable vsftpd
+
+By default, the FTP server allows anonymous login. If you want to disable anonymous login and require authentication for all users, you can edit the configuration file by running the following command:
+
+
+sudo vi /etc/vsftpd/vsftpd.conf
+
+Find the line that reads "anonymous_enable=YES" and change it to "anonymous_enable=NO". Save the file and exit the editor.
+
+Restart the FTP server for the configuration changes to take effect:
+
+
+sudo systemctl restart vsftpd
+
+That's it! Your FTP server is now installed and running on CentOS. You can use an FTP client such as FileZilla to connect to your server and transfer files.
+
+
+
+
+
+How to give access for a particular foldar and particular user through ftp
+
+To give access to a particular folder for a specific user through FTP in CentOS, you can follow these steps:
+
+Create a new user account for FTP access:
+
+
+sudo useradd -d /home/ftpuser -s /sbin/nologin ftpuser
+
+This creates a new user account named "ftpuser" with the home directory "/home/ftpuser" and with no login shell.
+
+Set a password for the new user account:
+
+
+sudo passwd ftpuser
+
+Create a new directory for the FTP user:
+
+
+sudo mkdir /var/ftp/files
+
+This creates a new directory "/var/ftp/files" which will be used for FTP access.
+
+Change the ownership of the directory to the FTP user:
+
+
+sudo chown ftpuser:ftpuser /var/ftp/files
+
+Edit the FTP configuration file:
+
+sudo vi /etc/vsftpd/vsftpd.conf
+
+Add the following lines at the end of the file:
+
+
+user_sub_token=$USER
+local_root=/var/ftp/files/$USER
+chroot_local_user=YES
+
+These lines will configure the FTP server to use the home directory of the FTP user and chroot the user to their home directory.
+
+Restart the FTP service:
+
+
+sudo systemctl restart vsftpd
+
+Now you can connect to the FTP server using the FTP client and the new user account. The user will only have access to the "/var/ftp/files/ftpuser" directory.
+
+That's it! You have now given access to a particular folder for a specific user through FTP in CentOS.
+
+
+
+
+

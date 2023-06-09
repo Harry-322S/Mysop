@@ -1,0 +1,57 @@
+Linux Crontab Format
+
+MIN HOUR DOM MON DOW CMD
+Crontab Fields and Allowed Ranges (Linux Crontab Syntax)
+
+Field    Description    Allowed Value
+MIN      Minute field    0 to 59
+HOUR     Hour field      0 to 23
+DOM      Day of Month    1-31
+MON      Month field     1-12
+DOW      Day Of Week     0-6
+CMD      Command         Any command to be executed.
+1. Scheduling a Job For a Specific Time
+
+The basic usage of cron is to execute a job in a specific time as shown below. 
+This will execute the Full backup shell script (full-backup) on 10th June 08:30 AM.
+
+The time field uses 24 hours format. So, for 8 AM use 8, and for 8 PM use 20.
+
+30 08 10 06 * /home/maverick/full-backup
+30 – 30th Minute
+08 – 08 AM
+10 – 10th Day
+06 – 6th Month (June)
+* – Every day of the week
+.To view the Crontab entries
+
+View Current Logged-In User’s Crontab entries : To view your crontab entries type * crontab -l from your unix account.
+crontab -e :: to edit cron tab
+crontab -u (username) -l :: to see the list of jobs scheduled by that user
+@yearly  : to scheduled yearly
+@monthly  : to schedule monthly
+@daily  : to schedule daily
+EXAMPLE:
+3. 0 10 * * * php /var/www/html/ebautomailer.php >> /var/www/html/ebautomailer.php_log >> /var/www/html/ebautomailer.php_err
+
+
+For every minute :: * * * * *
+For every hour :: 0 * * * *
+For every 10 miutes :: */10 * * * *
+For every 2 hours  :: 0 */2 * * * *
+For every day 9 AM :: 0 9 * * * *
+
+
+*/15 * * * * php /home/usha_engg/guru/mailers-continuous/loaddata.php >> /home/usha_engg/guru/mailers-continuous/loaddata.php_log >> /home/usha_engg/guru/mailers-continuous/loaddata.php_err
+
+
+Var/www/html/siebel_live_crons/create_vas_order_uat.php
+
+0 9 * * 1  php /var/www/html/rajiya/salesmarket_datareport_ytd.php >> /var/www/html/rajiya/salesmarket_datareport_ytd.php_log >> /var/www/html/rajiya/salesmarket_datareport_ytd.php_err
+
+/var/www/html/automations_usha/welcomeback_campaign_tabassum.php
+
+/var/www/html/upgrade_report.php
+
+
+/home/usha_engg/guru/mailers-continuous/loaddata.php

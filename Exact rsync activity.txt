@@ -1,0 +1,28 @@
+/fwmpnas/caf/2023
+
+/fwmpnas/documents/2023
+
+screen ( to enter screen)
+
+screen -ls  (to see list of screens)
+
+screen -r (id)  ( to enter screen)
+
+Ctrl+a+d  (to come out of screen)
+
+exit (to close screen)
+
+192.168.200.55   aCT#FvvMp@FR@pp2155   Port 2525
+
+10.100.112.114   FDCMPsS3qVPp     Port 2525
+
+
+rsync -ortuP  -e "ssh -p 2525" May root@192.168.200.55:/fwmpnas/caf/2023
+
+
+
+
+
+
+
+

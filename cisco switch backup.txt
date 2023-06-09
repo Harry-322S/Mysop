@@ -1,0 +1,20 @@
+san switch backup
+
+
+
+copy running-config ftp://10.100.111.55
+
+later file name with date save (MDS9148T-SAN1-running-config-19042022)
+
+user dchyd
+password bgt54rfV
+
+
+to move with rsync.
+
+rsync -avh source destination
+
+
+
+
+

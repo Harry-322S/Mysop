@@ -1,0 +1,24 @@
+2. Unmount the mount point :
+
+# umount /data01
+
+3. Disable lvm :
+
+# lvchange -an /dev/datavg/testlv
+
+4. Delete lvm volume :
+
+# lvremove /dev/datavg/testlv
+
+5. Disable volume group :
+
+# vgchange -an datavg
+
+6. Delete volume group :
+
+# vgremove datavg
+
+7. Delete physical Volumes being used for the volume group “datavg” :
+
+# pvremove /dev/sdb  /dev/sdc
+
